@@ -12,12 +12,13 @@
     "start": "node --experimental-modules ./src/index.mjs",
     "lint": "eslint -c .eslintrc.js . --ext .mjs",
     "lintfix": "npm run lint -- --fix",
-    "test": "node --experimental-modules node_modules/mocha/bin/_mocha --opts ./mocha.opts \"./{,!(node_modules)/**/}*.spec.js\"",
+    "test": "mocha --opts ./mocha.opts \"./{,!(node_modules)/**/}*.spec.mjs\"",
     "test:watch": "npm test -- --watch",
     "migrate": "pg-migrate",
     "snyk": "snyk"
   },
   "devDependencies": {
+    "@std/esm": "0.11.3",
     "chai": "4.1.2",
     "eslint": "4.8.0",
     "eslint-config-airbnb-base": "12.0.2",

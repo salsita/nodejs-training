@@ -23,4 +23,11 @@ pg.defaults.poolSize = db.poolSize;
 
 const pool = new pg.Pool(dbOptions);
 
-export default pool.connect.bind(pool);
+export default async (fn) => {
+  const dbClient = await pool.connect();
+  try {
+    return await fn(dbClient);
+  } finally {
+    dbClient.release();
+  }
+};

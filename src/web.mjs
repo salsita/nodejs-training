@@ -57,8 +57,7 @@ export default async () => {
 
   // test DB connection and return it to pool
   try {
-    const client = await connectDB();
-    client.release();
+    await connectDB(() => null);
   } catch (err) {
     log('error', 'Can\'t connect to DB', err);
     process.exit(1);

@@ -36,9 +36,8 @@ const envConfig = {
   port: process.env.PORT,
   allowUnsecure: toBoolean(process.env.ALLOW_UNSECURE, false),
   db: {
-    url: process.env.DATABASE_URL,
-    secure: toBoolean(process.env.SECURE_DATABASE, true),
-    poolSize: parseInt(process.env.POOL_SIZE, 10) || 20, // limit for free Postgre plan on Heroku,
+    connectionString: process.env.DATABASE_URL,
+    max: parseInt(process.env.POOL_SIZE, 10) || 20, // limit for free Postgre plan on Heroku
   },
   jwtKey: process.env.JWT_KEY,
   ssl: SSLKeyFile && CertSSLFile && {
@@ -56,7 +55,7 @@ const envConfig = {
 const required = [
   'apiBase',
   'port',
-  'db.url',
+  'db.connectionString',
   'jwtKey',
   'log.level',
   'log.colorize',

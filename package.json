@@ -1,0 +1,57 @@
+{
+  "name": "nodejs-boilerplate",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/salsita/nodejs-boilerplate"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "postinstall": "( [ -n \"${CI}\" ] || npm run migrate up ) && npm run snyk protect",
+    "start": "node --experimental-modules ./src/index.mjs",
+    "lint": "eslint -c .eslintrc.js . --ext .mjs",
+    "lintfix": "npm run lint -- --fix",
+    "test": "mocha --opts ./mocha.opts \"./{,!(node_modules)/**/}*.spec.mjs\"",
+    "test:watch": "npm test -- --watch",
+    "migrate": "pg-migrate",
+    "snyk": "snyk"
+  },
+  "devDependencies": {
+    "@std/esm": "0.13.0",
+    "chai": "4.1.2",
+    "eslint": "4.10.0",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-security": "1.4.0",
+    "mocha": "4.0.1",
+    "sinon": "4.1.2",
+    "sinon-chai": "2.14.0"
+  },
+  "dependencies": {
+    "dotenv": "4.0.0",
+    "http-status": "1.0.1",
+    "jsonwebtoken": "8.1.0",
+    "koa": "2.4.1",
+    "koa-bodyparser": "4.2.0",
+    "koa-compress": "2.0.0",
+    "koa-cors": "0.0.16",
+    "koa-helmet": "^3.2.0",
+    "koa-morgan": "1.0.1",
+    "koa-router": "7.2.1",
+    "koa-send": "4.1.1",
+    "koa-static-server": "1.3.2",
+    "lodash": "4.17.4",
+    "moment": "2.19.1",
+    "node-pg-migrate": "2.13.2",
+    "pg": "7.4.0",
+    "snyk": "1.48.1",
+    "winston": "2.4.0"
+  },
+  "engines": {
+    "node": "8.7.0",
+    "npm": "5.5.1"
+  },
+  "snyk": true
+}

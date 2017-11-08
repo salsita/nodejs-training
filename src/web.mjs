@@ -12,7 +12,7 @@ import serve from 'koa-static-server';
 import send from 'koa-send';
 import { middleware as forceSSL, createServer as createRedirectServer } from './helpers/forceSSL';
 
-import connectDB from './models';
+import connectDB from './db';
 import actions from './actions';
 
 import { log, logError } from './helpers/log';

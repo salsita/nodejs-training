@@ -13,7 +13,7 @@ const router = new Router({
 
 router.use(errorMiddleware);
 router.use('/v1', v1.routes(), v1.allowedMethods());
-router.all('(.*)', async () => {
+router.all('(.*)', () => {
   throw new NotFoundError(HTTPStatus[HTTPStatus.NOT_FOUND]);
 });
 

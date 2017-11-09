@@ -10,6 +10,7 @@ module.exports = {
     mocha: true,
   },
   rules: {
+    'security/detect-object-injection': 0,
     'comma-dangle': [
       'error',
       {

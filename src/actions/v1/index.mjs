@@ -1,9 +1,11 @@
 import Router from 'koa-router';
 
-import user from './user';
+import skills from './skills';
+import users from './users';
 
 const router = new Router();
 
-router.use('/user', user.routes(), user.allowedMethods());
+router.use('/skills', skills.routes(), skills.allowedMethods());
+router.use('/users', users.routes(), users.allowedMethods());
 
 export default router;

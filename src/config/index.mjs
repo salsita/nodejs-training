@@ -61,7 +61,6 @@ const required = [
   'log.colorize',
 ];
 
-/* eslint-disable security/detect-object-injection */
 const check = (conf, keyArray) => {
   const [key, ...rest] = keyArray;
   if (!conf[key]) {
@@ -71,7 +70,6 @@ const check = (conf, keyArray) => {
     ? check(conf[key], rest)
     : true;
 };
-/* eslint-enable security/detect-object-injection */
 
 const missing = required.reduce(
   (acc, longKey) => {

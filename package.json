@@ -15,10 +15,12 @@
     "test": "mocha --opts ./mocha.opts \"./{,!(node_modules)/**/}*.spec.mjs\"",
     "test:watch": "npm test -- --watch",
     "migrate": "pg-migrate",
-    "snyk": "snyk"
+    "snyk": "snyk",
+    "apidoc": "apidoc -f \".*\\.mjs$\" -i src/actions/ -o apidoc/"
   },
   "devDependencies": {
     "@std/esm": "0.13.0",
+    "apidoc": "0.17.6",
     "chai": "4.1.2",
     "eslint": "4.10.0",
     "eslint-config-airbnb-base": "12.1.0",
@@ -47,12 +49,12 @@
     "moment": "2.19.1",
     "node-pg-migrate": "2.13.2",
     "pg": "7.4.0",
-    "snyk": "1.48.1",
+    "snyk": "1.49.1",
     "squel": "5.12.0",
     "winston": "2.4.0"
   },
   "engines": {
-    "node": "8.7.0",
+    "node": "8.9.1",
     "npm": "5.5.1"
   },
   "snyk": true

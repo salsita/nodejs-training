@@ -31,6 +31,13 @@ const production = {
   },
 };
 
+const test = {
+  log: {
+    level: 'warn',
+    colorize: true,
+  },
+};
+
 const envConfig = {
   apiBase: '/api',
   port: process.env.PORT,
@@ -48,6 +55,7 @@ const envConfig = {
     {
       development,
       production,
+      test,
     }[process.env.NODE_ENV] || development
   ),
 };

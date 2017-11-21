@@ -3,7 +3,7 @@ import { userApiToDB, userDbToApi, skillDbToApi } from '../mapping';
 import { patch } from '../../../services/users';
 import { userSkillsModel } from '../../../db';
 import joiMiddleware from '../../joiMiddleware';
-import { userSchemaRequired, userId } from '../../../validations/user';
+import { userSchema, userId } from '../../../validations/user';
 
 /**
  * @api {patch} /api/v1/users/:id Update an user
@@ -67,7 +67,7 @@ export default [
     },
     {
       get: ctx => ctx.request.body,
-      schema: userSchemaRequired.forbiddenKeys('id').required(),
+      schema: userSchema.forbiddenKeys('id').required(),
     },
   ]),
 

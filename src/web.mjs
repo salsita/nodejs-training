@@ -1,6 +1,7 @@
 import http from 'http';
 import https from 'https';
 import fs from 'fs';
+import util from 'util';
 import Koa from 'koa';
 
 import morgan from 'koa-morgan';
@@ -12,15 +13,14 @@ import serve from 'koa-static-server';
 import send from 'koa-send';
 import { middleware as forceSSL, createServer as createRedirectServer } from './helpers/forceSSL';
 
-import connectDB from './db';
 import actions from './actions';
 
 import { log, logError } from './helpers/log';
-import config from './config';
 
-const { ssl, allowUnsecure, port } = config;
+// eslint-disable-next-line security/detect-non-literal-fs-filename
+const readFile = util.promisify(fs.readFile);
 
-export default async () => {
+export default async (ssl, allowUnsecure = !ssl) => {
   const app = new Koa();
 
   app.on('error', logError);
@@ -55,35 +55,32 @@ export default async () => {
     log('warn', 'Probably misconfigured server');
   }
 
-  // test DB connection and return it to pool
-  try {
-    await connectDB(() => null);
-  } catch (err) {
-    log('error', 'Can\'t connect to DB', err);
-    process.exit(1);
-  }
+  const [key, cert] = ssl
+    ? await Promise.all([
+      readFile(ssl.keyFile),
+      readFile(ssl.certFile),
+    ])
+    : [];
+  const server = ssl
+    ? https.createServer({ key, cert }, app.callback())
+    : http.createServer(app.callback());
 
-  let server = null;
-  if (ssl) {
-    const options = {
-      /* eslint-disable security/detect-non-literal-fs-filename */
-      key: fs.readFileSync(ssl.keyFile),
-      cert: fs.readFileSync(ssl.certFile),
-      /* eslint-enable security/detect-non-literal-fs-filename */
-    };
-    server = https.createServer(options, app.callback());
-    createRedirectServer();
-  } else {
-    server = http.createServer(app.callback());
-  }
-
-  server.listen(port, (err) => {
-    if (err) {
-      log('error', err);
-    } else {
-      log('info', '----');
-      log('info', `==> Server is running on port ${port}`);
-      log('info', `==> Send requests to http${allowUnsecure ? '' : 's'}://localhost:${port}`);
-    }
-  });
+  return {
+    app,
+    server,
+    start: (port) => {
+      server.listen(port, (err) => {
+        if (err) {
+          log('error', err);
+        } else {
+          log('info', '----');
+          log('info', `==> Server is running on port ${port}`);
+          log('info', `==> Send requests to http${allowUnsecure ? '' : 's'}://localhost:${port}`);
+        }
+      });
+      if (ssl && port == 443) { // eslint-disable-line eqeqeq
+        createRedirectServer().listen(80);
+      }
+    },
+  };
 };

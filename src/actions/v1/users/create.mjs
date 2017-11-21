@@ -21,7 +21,6 @@ import { userSchemaRequired } from '../../../validations/user';
  *
  * @apiParamExample {json} Request-Example:
  *     {
- *      "id": "123",
  *      "firstName": "John",
  *      "lastName": "Doe",
  *      "email": "john@doe.com",

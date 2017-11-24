@@ -17,9 +17,13 @@ export const getError = (err, asArray = false) => {
   const errString = asArray
     ? '{}'
     : JSON.stringify(err, null, ' ');
-  return errString !== '{}'
-    ? errString
-    : JSON.stringify([err.message, err.code, err.stack], null, ' ');
+  const error = errString !== '{}'
+    ? { error: err }
+    : { message: err.message, code: err.code };
+  if (err.stack) {
+    error.stack = err.stack;
+  }
+  return error;
 };
 
 export const getErrorForClient = (err, asArray = false) => (

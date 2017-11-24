@@ -12,7 +12,6 @@ async function transaction(dbClient, fn) {
   }
 }
 
-/* eslint-disable security/detect-object-injection */
 export default fn => async (dbClient) => {
   if (dbClient[tidx]) {
     await dbClient[tidx];
@@ -22,4 +21,3 @@ export default fn => async (dbClient) => {
 
   return dbClient[tidx];
 };
-/* eslint-enable security/detect-object-injection */

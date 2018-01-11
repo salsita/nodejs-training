@@ -27,13 +27,14 @@ const updateUserSkills = async (dbClient, id, newSkillIds) => {
     return null;
   }
 
-  const skills = await userSkillsModel.findSkillsForUser(id);
+  const skills = await userSkillsModel.findSkillMappingsForUser(dbClient, id);
   const oldSkillIds = skills.map(({ skillId }) => skillId);
   const toDelete = skills
     .filter(({ skillId }) => !newSkillIds.includes(skillId))
     .map(({ userSkillId }) => userSkillId);
   const toInsert = newSkillIds
     .filter(skillId => !oldSkillIds.includes(skillId));
+
   return Promise.all([
     userSkillsModel.removeByIds(dbClient, toDelete),
     userSkillsModel.insertForUser(dbClient, id, toInsert),
@@ -48,8 +49,8 @@ export const patch = uniqConstraintCatch(
     connectDB(transaction(async (dbClient) => {
       const valuesToUpdate = pruneValues(user);
       const updatedUser = _.isEmpty(valuesToUpdate)
-        ? await usersModel.updateById(dbClient, id, valuesToUpdate)
-        : await usersModel.findById(dbClient, id);
+        ? await usersModel.findById(dbClient, id)
+        : await usersModel.updateById(dbClient, id, valuesToUpdate);
       if (!updatedUser) {
         throw new NotFoundError('User not found');
       }

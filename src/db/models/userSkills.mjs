@@ -11,6 +11,17 @@ export const findAll = onlyRows(
   )
 );
 
+export const findSkillMappingsForUser = onlyRows(
+  (dbClient, id) => dbClient.query(
+    squel
+      .select()
+      .field('*')
+      .from('"UserSkills"')
+      .where('"userId" = ?', id)
+      .toParam()
+  )
+);
+
 export const findSkillsForUser = onlyRows(
   (dbClient, id) => dbClient.query(
     squel

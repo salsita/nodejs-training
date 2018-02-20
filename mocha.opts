@@ -1,3 +1,2 @@
---require @std/esm
 --recursive
---require ./mocha.bootstrap.mjs
+--require ./mocha.bootstrap.js

@@ -23,13 +23,12 @@ module.exports = {
     ],
     'quote-props': [2, 'consistent-as-needed'],
     'function-paren-newline': ['error', 'consistent'],
-    'import/extensions': ['error', { mjs: 'never' }],
     'import/no-extraneous-dependencies': [
       'error',
       {
         devDependencies: [
-          'mocha.bootstrap.mjs',
-          '**/*.spec.mjs',
+          'mocha.bootstrap.js',
+          '**/*.spec.js',
         ],
       },
     ],
@@ -41,7 +40,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       node: {
-        extensions: ['.js', '.mjs'],
+        extensions: ['.js'],
         moduleDirectory: ['node_modules'],
       },
     },

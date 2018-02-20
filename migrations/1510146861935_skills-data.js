@@ -8,9 +8,9 @@ exports.up = (pgm) => {
       .insert()
       .into('"Skills"')
       .setFieldsRows([
-        { skill: "JavaScript Developer" },
-        { skill: "Java Developer" },
-        { skill: "C# Developer" },
+        { skill: 'JavaScript Developer' },
+        { skill: 'Java Developer' },
+        { skill: 'C# Developer' },
       ])
       .toString()
   );

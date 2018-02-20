@@ -1,9 +1,11 @@
 const from = what => (fn, param) =>
-  async ctx => {
+  async (ctx) => {
     const args = ctx.request[what];
     ctx.body = fn(param ? args[param] : args);
   };
 
-export const fromParams = from('params');
-export const fromQuery = from('query');
-export const fromBody = from('body');
+module.exports = {
+  fromParams: from('params'),
+  fromQuery: from('query'),
+  fromBody: from('body'),
+};

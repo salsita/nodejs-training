@@ -1,7 +1,5 @@
 const http = require('http');
 const https = require('https');
-const fs = require('fs');
-const util = require('util');
 const Koa = require('koa');
 
 const morgan = require('koa-morgan');
@@ -16,9 +14,6 @@ const { middleware: forceSSL, createServer: createRedirectServer } = require('./
 const actions = require('./actions');
 
 const { log, logError } = require('./helpers/log');
-
-// eslint-disable-next-line security/detect-non-literal-fs-filename
-const readFile = util.promisify(fs.readFile);
 
 module.exports = async (ssl, allowUnsecure = !ssl) => {
   const app = new Koa();
@@ -55,14 +50,8 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
     log('warn', 'Probably misconfigured server');
   }
 
-  const [key, cert] = ssl
-    ? await Promise.all([
-      readFile(ssl.keyFile),
-      readFile(ssl.certFile),
-    ])
-    : [];
   const server = ssl
-    ? https.createServer({ key, cert }, app.callback())
+    ? https.createServer(await ssl, app.callback())
     : http.createServer(app.callback());
 
   return {

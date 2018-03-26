@@ -60,7 +60,4 @@ typings/
 # IDE files
 .idea
 
-# @std/esm
-.esm-cache
-
 apidoc

@@ -19,13 +19,5 @@ module.exports = {
       }
     ]
   },
-  plugins: ["import", "security"],
-  settings: {
-    "import/resolver": {
-      node: {
-        extensions: [".js", ".json"],
-        moduleDirectory: ["node_modules"]
-      }
-    }
-  }
+  plugins: ["import", "security"]
 };

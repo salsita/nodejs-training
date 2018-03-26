@@ -12,7 +12,7 @@
     "postinstall": "npm run migrate up && npm run snyk protect",
     "start": "node ./src/index",
     "start:dev": "nodemon ./src/index",
-    "lint": "eslint --ignore-path .gitignore -c .eslintrc.js .",
+    "lint": "eslint --ignore-path .gitignore -c eslintrc.js .",
     "lintfix": "npm run lint -- --fix",
     "test":
       "cross-env NODE_ENV=test mocha --opts ./mocha.opts \"./{,!(node_modules)/**/}*.spec.js\"",
@@ -67,7 +67,8 @@
     "npm": "5.5.1"
   },
   "lint-staged": {
-    "*.js": ["npm run lintfix", "git add"]
+    "*.js": ["npm run lintfix", "git add"],
+    "*.{json,md}": ["prettier --write", "git add"]
   },
   "snyk": true
 }

@@ -29,11 +29,8 @@ const getErrorForClient = (err, asArray = false) =>
     ? err.message || "Ooops something went wrong"
     : getError(err, asArray);
 
-const logError = err => log("error", getError(err));
-
 module.exports = {
   log,
   getError,
-  getErrorForClient,
-  logError
+  getErrorForClient
 };

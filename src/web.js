@@ -14,14 +14,12 @@ const {
   createServer: createRedirectServer
 } = require("./helpers/forceSSL");
 
-const actions = require("./actions");
-
-const { log, logError } = require("./helpers/log");
+const { log, getError } = require("./helpers/log");
 
 module.exports = async (ssl, allowUnsecure = !ssl) => {
   const app = new Koa();
 
-  app.on("error", logError);
+  app.on("error", err => log("error", "koa", getError(err)));
 
   // configure server - headers, logging, etc.
   app.use(
@@ -35,24 +33,6 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
   app.use(compress());
   app.use(bodyParser());
 
-  // api routes
-  app.use(actions.routes());
-  app.use(actions.allowedMethods());
-
-  // static assets
-  const s = serve({ rootDir: "./client" });
-  app.use(async (ctx, next) => {
-    try {
-      await s(ctx, next);
-    } catch (err) {
-      await next();
-    }
-  });
-  // otherwise send index
-  app.use(async ctx => {
-    await send(ctx, "./client/index.html");
-  });
-
   if (!ssl !== allowUnsecure) {
     log("warn", "Probably misconfigured server");
   }
@@ -64,10 +44,35 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
   return {
     app,
     server,
+    addRoutes: (actions, distDir) => {
+      // api routes
+      app.use(actions.routes());
+      app.use(actions.allowedMethods());
+
+      if (distDir) {
+        // static assets
+        const s = serve({ rootDir: distDir });
+        app.use(async (ctx, next) => {
+          try {
+            await s(ctx, next);
+          } catch (err) {
+            await next();
+          }
+        });
+        // otherwise send index
+        app.use(async ctx => {
+          await send(ctx, `${distDir}/index.html`);
+        });
+      }
+    },
     start: port => {
+      if (!port) {
+        throw new Error("No port specified");
+      }
       server.listen(port, err => {
         if (err) {
           log("error", err);
+          process.exit(1);
         } else {
           log("info", "----");
           log("info", `==> Server is running on port ${port}`);

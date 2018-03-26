@@ -2,6 +2,7 @@ const { log } = require("./helpers/log");
 const createWeb = require("./web");
 const { connect: connectDB } = require("./db");
 const config = require("./config");
+const actions = require("./actions");
 
 const { ssl, allowUnsecure, port } = config;
 
@@ -24,6 +25,7 @@ process.on("uncaughtException", err => {
     process.exit(1);
   }
 
-  const { start } = await createWeb(ssl, allowUnsecure);
+  const { start, addRoutes } = await createWeb(ssl, allowUnsecure);
+  addRoutes(actions, "./client");
   start(port);
 })();

@@ -1,5 +1,5 @@
-const { skillDbToApi } = require('../mapping');
-const { skillsModel } = require('../../../db');
+const { skillDbToApi } = require("../mapping");
+const { skillsModel } = require("../../../db");
 
 /**
  * @api {get} /api/v1/skills Retrieve all skills
@@ -33,7 +33,7 @@ const { skillsModel } = require('../../../db');
  *     ]
  */
 module.exports = [
-  async (ctx) => {
+  async ctx => {
     ctx.body = (await skillsModel.findAll()).map(skillDbToApi);
-  },
+  }
 ];

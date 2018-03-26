@@ -1,9 +1,9 @@
-const squel = require('../squel');
-const { onlyRows } = require('../utils/wrap');
+const squel = require("../squel");
+const { onlyRows } = require("../utils/wrap");
 
 // eslint-disable-next-line import/prefer-default-export
-const findAll = onlyRows(
-  dbClient => dbClient.query(
+const findAll = onlyRows(dbClient =>
+  dbClient.query(
     squel
       .select()
       .from('"Skills"')
@@ -12,5 +12,5 @@ const findAll = onlyRows(
 );
 
 module.exports = {
-  findAll,
+  findAll
 };

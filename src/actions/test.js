@@ -1,3 +1,3 @@
-const createWeb = require('../web');
+const createWeb = require("../web");
 
 module.exports = createWeb();

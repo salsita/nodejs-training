@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-expressions */
-const chai = require('chai');
-const sinon = require('sinon');
-const pg = require('pg');
+const chai = require("chai");
+const sinon = require("sinon");
+const pg = require("pg");
 
-const withDb = require('./withDb');
+const withDb = require("./withDb");
 
 const { expect } = chai;
 
-describe('wrap', () => {
+describe("wrap", () => {
   let sandbox;
 
   beforeEach(() => {
@@ -18,7 +18,7 @@ describe('wrap', () => {
     sandbox.restore();
   });
 
-  it('should call fn with non changed args when dbClient is first argument', async () => {
+  it("should call fn with non changed args when dbClient is first argument", async () => {
     const fn = sinon.spy();
     const client = new pg.Client();
     const args = [1, 2, 3];
@@ -27,7 +27,7 @@ describe('wrap', () => {
     expect(fn).to.have.been.calledWith(client, ...args);
   });
 
-  it('should call fn with created dbClient when dbClient is not first argument', async () => {
+  it("should call fn with created dbClient when dbClient is not first argument", async () => {
     const fn = sinon.spy();
     const args = [1, 2, 3];
     await withDb(fn)(...args);

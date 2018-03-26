@@ -1,1 +1,2 @@
-module.exports = (variable, defaultValue) => ((typeof variable === 'undefined') ? defaultValue : !!Number(variable));
+module.exports = (variable, defaultValue) =>
+  typeof variable === "undefined" ? defaultValue : !!Number(variable);

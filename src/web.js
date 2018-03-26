@@ -1,27 +1,34 @@
-const http = require('http');
-const https = require('https');
-const Koa = require('koa');
+const http = require("http");
+const https = require("https");
+const Koa = require("koa");
 
-const morgan = require('koa-morgan');
-const cors = require('koa-cors');
-const helmet = require('koa-helmet');
-const compress = require('koa-compress');
-const bodyParser = require('koa-bodyparser');
-const serve = require('koa-static-server');
-const send = require('koa-send');
-const { middleware: forceSSL, createServer: createRedirectServer } = require('./helpers/forceSSL');
+const morgan = require("koa-morgan");
+const cors = require("koa-cors");
+const helmet = require("koa-helmet");
+const compress = require("koa-compress");
+const bodyParser = require("koa-bodyparser");
+const serve = require("koa-static-server");
+const send = require("koa-send");
+const {
+  middleware: forceSSL,
+  createServer: createRedirectServer
+} = require("./helpers/forceSSL");
 
-const actions = require('./actions');
+const actions = require("./actions");
 
-const { log, logError } = require('./helpers/log');
+const { log, logError } = require("./helpers/log");
 
 module.exports = async (ssl, allowUnsecure = !ssl) => {
   const app = new Koa();
 
-  app.on('error', logError);
+  app.on("error", logError);
 
   // configure server - headers, logging, etc.
-  app.use(morgan(':date[iso] - web: :method :url :status :res[content-length] - :response-time ms'));
+  app.use(
+    morgan(
+      ":date[iso] - web: :method :url :status :res[content-length] - :response-time ms"
+    )
+  );
   app.use(forceSSL);
   app.use(cors());
   app.use(helmet());
@@ -33,7 +40,7 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
   app.use(actions.allowedMethods());
 
   // static assets
-  const s = serve({ rootDir: './client' });
+  const s = serve({ rootDir: "./client" });
   app.use(async (ctx, next) => {
     try {
       await s(ctx, next);
@@ -42,12 +49,12 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
     }
   });
   // otherwise send index
-  app.use(async (ctx) => {
-    await send(ctx, './client/index.html');
+  app.use(async ctx => {
+    await send(ctx, "./client/index.html");
   });
 
   if (!ssl !== allowUnsecure) {
-    log('warn', 'Probably misconfigured server');
+    log("warn", "Probably misconfigured server");
   }
 
   const server = ssl
@@ -57,19 +64,25 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
   return {
     app,
     server,
-    start: (port) => {
-      server.listen(port, (err) => {
+    start: port => {
+      server.listen(port, err => {
         if (err) {
-          log('error', err);
+          log("error", err);
         } else {
-          log('info', '----');
-          log('info', `==> Server is running on port ${port}`);
-          log('info', `==> Send requests to http${allowUnsecure ? '' : 's'}://localhost:${port}`);
+          log("info", "----");
+          log("info", `==> Server is running on port ${port}`);
+          log(
+            "info",
+            `==> Send requests to http${
+              allowUnsecure ? "" : "s"
+            }://localhost:${port}`
+          );
         }
       });
-      if (ssl && port == 443) { // eslint-disable-line eqeqeq
+      // eslint-disable-next-line eqeqeq
+      if (ssl && port == 443) {
         createRedirectServer().listen(80);
       }
-    },
+    }
   };
 };

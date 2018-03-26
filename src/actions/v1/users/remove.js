@@ -1,9 +1,9 @@
-const joi = require('joi');
-const HTTPStatus = require('http-status');
-const { usersModel } = require('../../../db');
-const joiMiddleware = require('../../joiMiddleware');
-const { userId } = require('../../../validations/user');
-const NotFoundError = require('../../../errors/NotFoundError');
+const joi = require("joi");
+const HTTPStatus = require("http-status");
+const { usersModel } = require("../../../db");
+const joiMiddleware = require("../../joiMiddleware");
+const { userId } = require("../../../validations/user");
+const NotFoundError = require("../../../errors/NotFoundError");
 
 /**
  * @api {delete} /api/v1/users/:id Delete an user
@@ -23,18 +23,18 @@ module.exports = [
     {
       get: ctx => ctx.params,
       schema: joi.object().keys({
-        id: userId.required(),
-      }),
-    },
+        id: userId.required()
+      })
+    }
   ]),
 
-  async (ctx) => {
+  async ctx => {
     const { id } = ctx.params;
     const user = await usersModel.removeById(id);
     if (!user) {
-      throw new NotFoundError('User not found');
+      throw new NotFoundError("User not found");
     }
 
     ctx.status = HTTPStatus.NO_CONTENT;
-  },
+  }
 ];

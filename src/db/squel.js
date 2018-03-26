@@ -1,3 +1,3 @@
-const squel = require('squel');
+const squel = require("squel");
 
-module.exports = squel.useFlavour('postgres');
+module.exports = squel.useFlavour("postgres");

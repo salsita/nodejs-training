@@ -1,48 +1,31 @@
 module.exports = {
   extends: [
-    'eslint-config-airbnb-base',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:security/recommended',
+    "eslint-config-airbnb-base",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:security/recommended",
+    "plugin:prettier/recommended"
   ],
   env: {
     node: true,
-    mocha: true,
+    mocha: true
   },
   rules: {
-    'security/detect-object-injection': 0,
-    'comma-dangle': [
-      'error',
+    "security/detect-object-injection": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
       {
-        arrays: 'always-multiline',
-        objects: 'always-multiline',
-        imports: 'always-multiline',
-        exports: 'always-multiline',
-        functions: 'ignore',
-      },
-    ],
-    'quote-props': [2, 'consistent-as-needed'],
-    'function-paren-newline': ['error', 'consistent'],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: [
-          'mocha.bootstrap.js',
-          '**/*.spec.js',
-        ],
-      },
-    ],
+        devDependencies: ["mocha.bootstrap.js", "**/*.spec.js"]
+      }
+    ]
   },
-  plugins: [
-    'import',
-    'security',
-  ],
+  plugins: ["import", "security"],
   settings: {
-    'import/resolver': {
+    "import/resolver": {
       node: {
-        extensions: ['.js'],
-        moduleDirectory: ['node_modules'],
-      },
-    },
-  },
+        extensions: [".js", ".json"],
+        moduleDirectory: ["node_modules"]
+      }
+    }
+  }
 };

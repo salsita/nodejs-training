@@ -1,27 +1,30 @@
-const pg = require('pg');
-const util = require('util');
-const { log } = require('../helpers/log');
-const config = require('../config');
-const DBError = require('../errors/DBError');
+const pg = require("pg");
+const util = require("util");
+const { log } = require("../helpers/log");
+const config = require("../config");
+const DBError = require("../errors/DBError");
 
-const isMyQuery = Symbol('isMyQuery');
+const isMyQuery = Symbol("isMyQuery");
 
-const injectLogging = (dbClient) => {
+const injectLogging = dbClient => {
   if (!dbClient[isMyQuery]) {
     dbClient[isMyQuery] = true; // eslint-disable-line no-param-reassign
     const originalQuery = dbClient.query.bind(dbClient);
-    dbClient.query = async (...args) => { // eslint-disable-line no-param-reassign
+    // eslint-disable-next-line no-param-reassign
+    dbClient.query = async (...args) => {
       try {
         const start = process.hrtime();
         const result = await originalQuery(...args);
         const end = process.hrtime(start);
 
-        const time = ((end[0] * 1e9) + end[1]) / 1e6;
+        const time = (end[0] * 1e9 + end[1]) / 1e6;
         const argsFormatted = util.inspect(args);
-        log('debug', `${time.toFixed(3)}`, argsFormatted, { rowCount: result.rowCount });
+        log("debug", `${time.toFixed(3)}`, argsFormatted, {
+          rowCount: result.rowCount
+        });
         return result;
       } catch (err) {
-        log('error', 'DB', err.stack || err, '\n', args);
+        log("error", "DB", err.stack || err, "\n", args);
         throw new DBError(err);
       }
     };
@@ -33,7 +36,7 @@ const { db } = config;
 
 const pool = new pg.Pool(db);
 
-module.exports = async (fn) => {
+module.exports = async fn => {
   const dbClient = await pool.connect();
   try {
     injectLogging(dbClient);

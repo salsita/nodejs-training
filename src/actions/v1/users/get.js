@@ -1,9 +1,9 @@
-const joi = require('joi');
-const { skillDbToApi, userDbToApi } = require('../mapping');
-const { usersModel, userSkillsModel } = require('../../../db');
-const joiMiddleware = require('../../joiMiddleware');
-const { userId } = require('../../../validations/user');
-const NotFoundError = require('../../../errors/NotFoundError');
+const joi = require("joi");
+const { skillDbToApi, userDbToApi } = require("../mapping");
+const { usersModel, userSkillsModel } = require("../../../db");
+const joiMiddleware = require("../../joiMiddleware");
+const { userId } = require("../../../validations/user");
+const NotFoundError = require("../../../errors/NotFoundError");
 
 /**
  * @api {get} /api/v1/users/:id Retrieve an user
@@ -45,22 +45,22 @@ module.exports = [
     {
       get: ctx => ctx.params,
       schema: joi.object().keys({
-        id: userId.required(),
-      }),
-    },
+        id: userId.required()
+      })
+    }
   ]),
 
-  async (ctx) => {
+  async ctx => {
     const { id } = ctx.params;
     const user = await usersModel.findById(id);
     if (!user) {
-      throw new NotFoundError('User not found');
+      throw new NotFoundError("User not found");
     }
     const skills = await userSkillsModel.findSkillsForUser(id);
 
     ctx.body = {
       ...userDbToApi(user),
-      skills: skills.map(skill => ({ skill: skillDbToApi(skill) })),
+      skills: skills.map(skill => ({ skill: skillDbToApi(skill) }))
     };
-  },
+  }
 ];

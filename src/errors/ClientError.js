@@ -1,4 +1,4 @@
-const ExtendableError = require('./ExtendableError');
+const ExtendableError = require("./ExtendableError");
 
 module.exports = class ClientError extends ExtendableError {
   constructor(message, status) {

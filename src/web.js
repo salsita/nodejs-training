@@ -7,7 +7,7 @@ const cors = require("koa-cors");
 const helmet = require("koa-helmet");
 const compress = require("koa-compress");
 const bodyParser = require("koa-bodyparser");
-const serve = require("koa-static-server");
+const serve = require("koa-static");
 const send = require("koa-send");
 const {
   middleware: forceSSL,
@@ -51,18 +51,9 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
 
       if (distDir) {
         // static assets
-        const s = serve({ rootDir: distDir });
-        app.use(async (ctx, next) => {
-          try {
-            await s(ctx, next);
-          } catch (err) {
-            await next();
-          }
-        });
+        app.use(serve(distDir));
         // otherwise send index
-        app.use(async ctx => {
-          await send(ctx, `${distDir}/index.html`);
-        });
+        app.use(ctx => send(ctx, `${distDir}/index.html`));
       }
     },
     start: port => {
@@ -74,14 +65,10 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
           log("error", err);
           process.exit(1);
         } else {
+          const protocol = `http${allowUnsecure ? "" : "s"}`;
           log("info", "----");
           log("info", `==> Server is running on port ${port}`);
-          log(
-            "info",
-            `==> Send requests to http${
-              allowUnsecure ? "" : "s"
-            }://localhost:${port}`
-          );
+          log("info", `==> Send requests to ${protocol}://localhost:${port}`);
         }
       });
       // eslint-disable-next-line eqeqeq

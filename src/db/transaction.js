@@ -14,7 +14,11 @@ async function transaction(dbClient, fn) {
 
 module.exports = fn => async dbClient => {
   if (dbClient[tidx]) {
-    await dbClient[tidx];
+    try {
+      await dbClient[tidx];
+    } catch (err) {
+      // we do not care for previous result
+    }
   }
 
   dbClient[tidx] = transaction(dbClient, fn); // eslint-disable-line no-param-reassign

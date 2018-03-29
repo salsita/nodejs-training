@@ -1,6 +1,6 @@
-const _ = require('lodash');
-const { skillDbToApi, userDbToApi } = require('../mapping');
-const { usersModel, skillsModel, userSkillsModel } = require('../../../db');
+const _ = require("lodash");
+const { skillDbToApi, userDbToApi } = require("../mapping");
+const { usersModel, skillsModel, userSkillsModel } = require("../../../db");
 
 /**
  * @api {get} /api/v1/users Retrieve all users
@@ -56,21 +56,22 @@ const { usersModel, skillsModel, userSkillsModel } = require('../../../db');
  *     ]
  */
 module.exports = [
-  async (ctx) => {
+  async ctx => {
     const users = await usersModel.findAll();
     const skills = _.keyBy(
       (await skillsModel.findAll()).map(skillDbToApi),
-      'id'
+      "id"
     );
     const skillsByUser = _.chain(await userSkillsModel.findAll())
-      .groupBy('userId')
-      .mapValues(userSkills => userSkills.map(({ skillId }) => ({ skill: skills[skillId] })))
+      .groupBy("userId")
+      .mapValues(userSkills =>
+        userSkills.map(({ skillId }) => ({ skill: skills[skillId] }))
+      )
       .value();
 
-    ctx.body = users
-      .map(user => ({
-        ...userDbToApi(user),
-        skills: skillsByUser[user.userId] || [],
-      }));
-  },
+    ctx.body = users.map(user => ({
+      ...userDbToApi(user),
+      skills: skillsByUser[user.userId] || []
+    }));
+  }
 ];

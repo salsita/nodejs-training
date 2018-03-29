@@ -1,18 +1,18 @@
-const tidx = Symbol('transaction id');
+const tidx = Symbol("transaction id");
 
 async function transaction(dbClient, fn) {
-  await dbClient.query('BEGIN');
+  await dbClient.query("BEGIN");
   try {
     const result = await fn(dbClient);
-    await dbClient.query('COMMIT');
+    await dbClient.query("COMMIT");
     return result;
   } catch (err) {
-    await dbClient.query('ROLLBACK');
+    await dbClient.query("ROLLBACK");
     throw err;
   }
 }
 
-module.exports = fn => async (dbClient) => {
+module.exports = fn => async dbClient => {
   if (dbClient[tidx]) {
     await dbClient[tidx];
   }

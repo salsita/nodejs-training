@@ -1,9 +1,9 @@
-const joi = require('joi');
-const { userApiToDB, userDbToApi, skillDbToApi } = require('../mapping');
-const { patch } = require('../../../services/users');
-const { userSkillsModel } = require('../../../db');
-const joiMiddleware = require('../../joiMiddleware');
-const { userSchema, userId } = require('../../../validations/user');
+const joi = require("joi");
+const { userApiToDB, userDbToApi, skillDbToApi } = require("../mapping");
+const { patch } = require("../../../services/users");
+const { userSkillsModel } = require("../../../db");
+const joiMiddleware = require("../../joiMiddleware");
+const { userSchema, userId } = require("../../../validations/user");
 
 /**
  * @api {patch} /api/v1/users/:id Update an user
@@ -62,16 +62,16 @@ module.exports = [
     {
       get: ctx => ctx.params,
       schema: joi.object().keys({
-        id: userId.required(),
-      }),
+        id: userId.required()
+      })
     },
     {
       get: ctx => ctx.request.body,
-      schema: userSchema.forbiddenKeys('id').required(),
-    },
+      schema: userSchema.forbiddenKeys("id").required()
+    }
   ]),
 
-  async (ctx) => {
+  async ctx => {
     const { params: { id }, request: { body } } = ctx;
 
     const user = userApiToDB(body);
@@ -83,7 +83,7 @@ module.exports = [
 
     ctx.body = {
       ...userDbToApi(updatedUser),
-      skills: updatedSkills.map(skill => ({ skill: skillDbToApi(skill) })),
+      skills: updatedSkills.map(skill => ({ skill: skillDbToApi(skill) }))
     };
-  },
+  }
 ];

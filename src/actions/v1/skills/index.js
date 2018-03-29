@@ -1,9 +1,9 @@
-const Router = require('koa-router');
+const Router = require("koa-router");
 
-const list = require('./list');
+const list = require("./list");
 
 const router = new Router();
 
-router.get('/', ...list);
+router.get("/", ...list);
 
 module.exports = router;

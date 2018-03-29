@@ -1,9 +1,9 @@
-const HTTPStatus = require('http-status');
-const { userApiToDB, userDbToApi, skillDbToApi } = require('../mapping');
-const { create } = require('../../../services/users');
-const { userSkillsModel } = require('../../../db');
-const joiMiddleware = require('../../joiMiddleware');
-const { userSchemaRequired } = require('../../../validations/user');
+const HTTPStatus = require("http-status");
+const { userApiToDB, userDbToApi, skillDbToApi } = require("../mapping");
+const { create } = require("../../../services/users");
+const { userSkillsModel } = require("../../../db");
+const joiMiddleware = require("../../joiMiddleware");
+const { userSchemaRequired } = require("../../../validations/user");
 
 /**
  * @api {post} /api/v1/users Create an user
@@ -71,11 +71,11 @@ module.exports = [
   joiMiddleware([
     {
       get: ctx => ctx.request.body,
-      schema: userSchemaRequired.forbiddenKeys('id').required(),
-    },
+      schema: userSchemaRequired.forbiddenKeys("id").required()
+    }
   ]),
 
-  async (ctx) => {
+  async ctx => {
     const { body } = ctx.request;
     const user = userApiToDB(body);
     const skills = body.skills || [];
@@ -83,12 +83,14 @@ module.exports = [
 
     const { user: createdUser } = await create(user, skillIds);
 
-    const createdSkills = await userSkillsModel.findSkillsForUser(createdUser.userId);
+    const createdSkills = await userSkillsModel.findSkillsForUser(
+      createdUser.userId
+    );
 
     ctx.status = HTTPStatus.CREATED;
     ctx.body = {
       ...userDbToApi(createdUser),
-      skills: createdSkills.map(skill => ({ skill: skillDbToApi(skill) })),
+      skills: createdSkills.map(skill => ({ skill: skillDbToApi(skill) }))
     };
-  },
+  }
 ];

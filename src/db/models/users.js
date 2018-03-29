@@ -1,9 +1,9 @@
-const squel = require('../squel');
-const { onlyRows, onlyFirstRow } = require('../utils/wrap');
-const quote = require('../utils/quote');
+const squel = require("../squel");
+const { onlyRows, onlyFirstRow } = require("../utils/wrap");
+const quote = require("../utils/quote");
 
-const findAll = onlyRows(
-  dbClient => dbClient.query(
+const findAll = onlyRows(dbClient =>
+  dbClient.query(
     squel
       .select()
       .from('"Users"')
@@ -11,8 +11,8 @@ const findAll = onlyRows(
   )
 );
 
-const findById = onlyFirstRow(
-  (dbClient, id) => dbClient.query(
+const findById = onlyFirstRow((dbClient, id) =>
+  dbClient.query(
     squel
       .select()
       .from('"Users"')
@@ -21,45 +21,44 @@ const findById = onlyFirstRow(
   )
 );
 
-const insert = onlyFirstRow(
-  (dbClient, data) => dbClient.query(
+const insert = onlyFirstRow((dbClient, data) =>
+  dbClient.query(
     squel
       .insert()
       .into('"Users"')
       .setFields(quote(data))
-      .returning('*')
+      .returning("*")
       .toParam()
   )
 );
 
-const updateById = onlyFirstRow(
-  (dbClient, id, data) => dbClient.query(
+const updateById = onlyFirstRow((dbClient, id, data) =>
+  dbClient.query(
     squel
       .update()
       .table('"Users"')
       .setFields(quote(data))
       .where('"userId" = ?', id)
-      .returning('*')
+      .returning("*")
       .toParam()
   )
 );
 
-const removeById = onlyFirstRow(
-  (dbClient, id) => dbClient.query(
+const removeById = onlyFirstRow((dbClient, id) =>
+  dbClient.query(
     squel
       .remove()
       .from('"Users"')
       .where('"userId" = ?', id)
-      .returning('*')
+      .returning("*")
       .toParam()
   )
 );
-
 
 module.exports = {
   findAll,
   findById,
   insert,
   updateById,
-  removeById,
+  removeById
 };

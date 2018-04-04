@@ -2,8 +2,7 @@ const HTTPStatus = require("http-status");
 
 const ClientError = require("../errors/ClientError");
 
-const isProduction = require("../helpers/isProduction");
-const { log, getError } = require("../helpers/log");
+const { log, getError, getErrorForClient } = require("../helpers/log");
 
 module.exports = async (ctx, next) => {
   try {
@@ -19,9 +18,7 @@ module.exports = async (ctx, next) => {
 
       ctx.status = HTTPStatus.INTERNAL_SERVER_ERROR;
       ctx.body = {
-        name: err.name,
-        error: err.message,
-        stack: isProduction ? undefined : err.stack
+        error: getErrorForClient(err)
       };
     }
   }

@@ -68,7 +68,7 @@ const required = [
 
 const check = (conf, keyArray) => {
   const [key, ...rest] = keyArray;
-  if (!conf[key]) {
+  if (conf[key] === undefined) {
     return false;
   }
   return rest.length ? check(conf[key], rest) : true;

@@ -4,6 +4,15 @@ backend part for our frontend (react/angular) trainings
 
 * [REST API](http://salsita.github.io/nodejs-training/apidoc/)
 
+## Heroku deployment:
+
+```
+heroku addons:create papertrail:choklad
+heroku addons:create heroku-postgresql:hobby-dev
+heroku config:set PGSSLMODE=require
+heroku config:set JWT_KEY=<some random string>
+```
+
 ## What we use:
 
 ### Dependencies:

@@ -60,4 +60,5 @@ typings/
 # IDE files
 .idea
 
-apidoc
+/apidoc
+/client-auth/build

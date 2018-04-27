@@ -36,13 +36,24 @@ const test = {
 
 const envConfig = {
   apiBase: "/api",
+  domain: process.env.DOMAIN,
   port: process.env.PORT,
   allowUnsecure: toBoolean(process.env.ALLOW_UNSECURE, false),
   db: {
     connectionString: process.env.DATABASE_URL,
     max: parseInt(process.env.POOL_SIZE, 10) || 20 // limit for free Postgre plan on Heroku
   },
-  jwtKey: process.env.JWT_KEY,
+  auth: {
+    jwtKey: process.env.JWT_KEY,
+    github: {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET
+    },
+    google: {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    }
+  },
   ssl:
     (SSLKey || SSLKeyFile) &&
     (CertSSL || CertSSLFile) &&
@@ -59,9 +70,14 @@ const envConfig = {
 
 const required = [
   "apiBase",
+  "domain",
   "port",
   "db.connectionString",
-  "jwtKey",
+  "auth.jwtKey",
+  "auth.github.clientID",
+  "auth.github.clientSecret",
+  "auth.google.clientID",
+  "auth.google.clientSecret",
   "log.level",
   "log.colorize"
 ];
@@ -82,7 +98,19 @@ const missing = required.reduce((acc, longKey) => {
   return acc;
 }, []);
 
-if (!process.env.CI && missing.length) {
+if (process.env.CI) {
+  missing.forEach(longKey => {
+    const keyArray = longKey.split(".").reverse();
+    let conf = envConfig;
+    while (keyArray.length) {
+      const key = keyArray.pop();
+      if (conf[key] === undefined) {
+        conf[key] = keyArray.length ? {} : "CI";
+      }
+      conf = conf[key];
+    }
+  });
+} else if (missing.length) {
   console.log(`Missing settings: ${missing.join(", ")}`); // eslint-disable-line no-console
   process.exit(1);
 }

@@ -44,7 +44,11 @@ class App extends Component {
           </ul>
         </p>
         <h3>Test API call</h3>
-        {response ? JSON.stringify(response) : "... loading ..."}
+        {response ? (
+          <div className="test">{JSON.stringify(response)}</div>
+        ) : (
+          "... loading ..."
+        )}
       </div>
     );
   }

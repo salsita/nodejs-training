@@ -1,13 +1,12 @@
 const Router = require("koa-router");
 const passport = require("../../../auth/passport");
 const { createSessionToken } = require("../../../auth/utils");
-const { apiBase, domain, allowUnsecure } = require("../../../config");
-const { storageKey, setToken } = require("../../../../client-auth/src/login");
-
-const protocol = `http${allowUnsecure ? "" : "s"}`;
+const { apiBase } = require("../../../config");
+const baseUrl = require("../../../helpers/baseUrl");
+const createStoreAuthTokenCode = require("../../../helpers/createStoreAuthTokenCode");
 
 const getCallbackUrl = serviceName =>
-  `${protocol}://${domain}${apiBase}/v1/auth/${serviceName}/callback`;
+  `${baseUrl}${apiBase}/v1/auth/${serviceName}/callback`;
 
 const authConfig = {
   failureRedirect: "/auth/login",
@@ -19,9 +18,7 @@ const successResponse = async ctx => {
   ctx.body = `
 <html>
 <script>
-  var storageKey='${storageKey}';
-  ${setToken.toString()};
-  ${setToken.name}('${sessionToken}');
+  ${createStoreAuthTokenCode(sessionToken)}
   window.location.assign('/auth');
 </script>
 </html>

@@ -36,7 +36,7 @@ const { db } = config;
 
 const pool = new pg.Pool(db);
 
-module.exports = async fn => {
+const connect = async fn => {
   const dbClient = await pool.connect();
   try {
     injectLogging(dbClient);
@@ -45,3 +45,7 @@ module.exports = async fn => {
     dbClient.release();
   }
 };
+
+connect.pool = pool;
+
+module.exports = connect;

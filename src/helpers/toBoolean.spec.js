@@ -4,14 +4,9 @@ const sinon = require("sinon");
 const toBoolean = require("./toBoolean");
 
 const { expect } = chai;
+const sandbox = sinon.createSandbox();
 
 describe("toBoolean", () => {
-  let sandbox;
-
-  beforeEach(() => {
-    sandbox = sinon.sandbox.create();
-  });
-
   afterEach(() => {
     sandbox.restore();
   });

@@ -48,8 +48,7 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
     server,
     addRoutes: (actions, distDir) => {
       // api routes
-      app.use(actions.routes());
-      app.use(actions.allowedMethods());
+      app.use(actions.routes(), actions.allowedMethods());
 
       if (distDir) {
         // static assets

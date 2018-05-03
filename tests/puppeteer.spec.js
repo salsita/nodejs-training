@@ -2,17 +2,19 @@ const { expect } = require("chai");
 const Page = require("./utils/page");
 const baseUrl = require("../src/helpers/baseUrl");
 
-describe("puppeteer", () => {
+describe("puppeteer", function describePuppeteer() {
   let page;
+  this.timeout(5000);
 
-  beforeEach(async function beforeEach() {
-    this.timeout(5000);
+  beforeEach(async () => {
     page = await Page.build();
     await page.goto(`${baseUrl}/auth`);
   });
 
   afterEach(async () => {
-    await page.close();
+    if (page) {
+      await page.close();
+    }
   });
 
   describe("not logged in", () => {
@@ -22,7 +24,7 @@ describe("puppeteer", () => {
     });
 
     it("should display error response from test API", async () => {
-      // await page.waitFor(".test");
+      await page.waitFor(".test");
       const message = await page.getContentsOf(".test");
       expect(message).to.eql('{"error":"Unauthorized"}');
     });
@@ -45,7 +47,7 @@ describe("puppeteer", () => {
     });
 
     it("should display correct response from test API", async () => {
-      // await page.waitFor(".test");
+      await page.waitFor(".test");
       const message = await page.getContentsOf(".test");
       expect(message).to.eql('{"message":"ok"}');
     });

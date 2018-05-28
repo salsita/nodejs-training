@@ -1,5 +1,12 @@
+const {
+  connect: { pool }
+} = require("../db");
 const createWeb = require("../web");
 const actions = require(".");
+
+after(async () => {
+  await pool.end();
+});
 
 module.exports = (async () => {
   const web = await createWeb();

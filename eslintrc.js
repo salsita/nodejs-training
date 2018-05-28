@@ -15,7 +15,7 @@ module.exports = {
     "import/no-extraneous-dependencies": [
       "error",
       {
-        devDependencies: ["mocha.bootstrap.js", "**/*.spec.js"]
+        devDependencies: ["mocha.bootstrap.js", "tests/**", "**/*.spec.js"]
       }
     ]
   },

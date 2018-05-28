@@ -86,8 +86,8 @@ describe("/api/v1/users", () => {
         firstName: newFirstName,
         skills: newSkills
       })
-      .set("Accept", "application/json");
-    // .expect(200);
+      .set("Accept", "application/json")
+      .expect(200);
 
     expect(patchedUser)
       .to.be.an("object")

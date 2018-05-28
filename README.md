@@ -2,16 +2,54 @@
 
 backend part for our frontend (react/angular) trainings
 
-* [REST API](http://salsita.github.io/nodejs-training/apidoc/)
+* [REST API docs](http://salsita.github.io/nodejs-training/apidoc/)
 
-## Heroku deployment:
+## Deployment/Running:
+
+Create new OAuth App at Github ( https://github.com/settings/developers )
+and Google ( https://console.developers.google.com/apis/dashboard ) and use client id
+and secret to configure nodejs app.
+
+### Heroku
 
 ```
 heroku addons:create papertrail:choklad
 heroku addons:create heroku-postgresql:hobby-dev
 heroku config:set PGSSLMODE=require
 heroku config:set JWT_KEY=<some random string>
+heroku config:set DOMAIN=<url of your app>
+heroku config:set GITHUB_CLIENT_ID=<insert>
+heroku config:set GITHUB_CLIENT_SECRET=<insert>
+heroku config:set GOOGLE_CLIENT_ID=<insert>
+heroku config:set GOOGLE_CLIENT_SECRET=<insert>
 ```
+
+### Outside Heroku
+
+Copy `.env.dev` to `.env` and update settings:
+
+* `ALLOW_UNSECURE` - do not try to redirect http to https
+* `PORT` - port where API will be running
+* `DOMAIN` - url where API will be running
+* `SSL_KEY_FILE` - path to SSL key file
+* `SSL_KEY` - SSL key file contents
+* `CERT_SSL_FILE` - path to SSL cert file
+* `CERT_SSL` - SSL cert file contents
+* `DATABASE_URL` - connection string to postgres DB
+* `JWT_KEY` - random secure key for signing session payload
+* `GITHUB_CLIENT_ID` - from OAuth app you created
+* `GITHUB_CLIENT_SECRET` - from OAuth app you created
+* `GOOGLE_CLIENT_ID` - from OAuth app you created
+* `GOOGLE_CLIENT_SECRET` - from OAuth app you created
+
+And run either via `npm run start:dev` or `npm start`
+
+## Training plan
+
+**There is no nodejs way (like there is an Angular way or React way etc.). Just pick framework (we like `Koa`)
+and it comes with a function signature for writing middleware function (all frameworks have similar structure -
+request in, response out). All other depends on type of project, used technologies (REST/SOAP/GraphQL,
+Postgres/Mongo/Redis/ElasticSearch/Kafka/...) and on you. Here I present some patterns you may find useful.**
 
 ## What we use:
 
@@ -62,5 +100,5 @@ heroku config:set JWT_KEY=<some random string>
 ## Links
 
 * [node compatibility table](https://node.green/)
-* [LTS API docs](https://nodejs.org/dist/latest-v8.x/docs/api/)
+* [API docs](https://nodejs.org/docs/latest/api/)
 * [Awesome node.js](https://node.cool) (aka node.cool)

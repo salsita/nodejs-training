@@ -72,7 +72,10 @@ module.exports = [
   ]),
 
   async ctx => {
-    const { params: { id }, request: { body } } = ctx;
+    const {
+      params: { id },
+      request: { body }
+    } = ctx;
 
     const user = userApiToDB(body);
     const skillIds = body.skills && body.skills.map(skill => skill.skill.id);

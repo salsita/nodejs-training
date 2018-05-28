@@ -21,6 +21,16 @@ const findById = onlyFirstRow((dbClient, id) =>
   )
 );
 
+const findByLogin = onlyFirstRow((dbClient, id) =>
+  dbClient.query(
+    squel
+      .select()
+      .from('"Users"')
+      .where('"login" = ?', id)
+      .toParam()
+  )
+);
+
 const insert = onlyFirstRow((dbClient, data) =>
   dbClient.query(
     squel
@@ -55,10 +65,53 @@ const removeById = onlyFirstRow((dbClient, id) =>
   )
 );
 
+const findOrCreateFromProfile = async (
+  dbClient,
+  serviceName,
+  identifier,
+  firstName,
+  lastName,
+  email
+) => {
+  const identifierColumnName = `${serviceName}Identifier`;
+  const {
+    rows: [user]
+  } = await dbClient.query(
+    squel
+      .select()
+      .from('"Users"')
+      .where(`"${identifierColumnName}" = ?`, identifier)
+      .toParam()
+  );
+  if (user) {
+    return user;
+  }
+  const {
+    rows: [newUser]
+  } = await dbClient.query(
+    squel
+      .insert()
+      .into('"Users"')
+      .setFields(
+        quote({
+          [identifierColumnName]: identifier,
+          firstName,
+          lastName,
+          email
+        })
+      )
+      .returning("*")
+      .toParam()
+  );
+  return newUser;
+};
+
 module.exports = {
   findAll,
   findById,
+  findByLogin,
   insert,
   updateById,
-  removeById
+  removeById,
+  findOrCreateFromProfile
 };

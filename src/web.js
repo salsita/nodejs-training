@@ -13,6 +13,7 @@ const {
   middleware: forceSSL,
   createServer: createRedirectServer
 } = require("./helpers/forceSSL");
+const passport = require("./auth/passport");
 
 const { log, getError } = require("./helpers/log");
 
@@ -32,6 +33,7 @@ module.exports = async (ssl, allowUnsecure = !ssl) => {
   app.use(helmet());
   app.use(compress());
   app.use(bodyParser());
+  app.use(passport.initialize());
 
   if (!ssl !== allowUnsecure) {
     log("warn", "Probably misconfigured server");

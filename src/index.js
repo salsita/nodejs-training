@@ -26,11 +26,22 @@ process.on("uncaughtException", err => {
     process.exit(1);
   }
 
-  const { app, start, addRoutes } = await createWeb({
+  const { app, start, addRoutes, shutdown } = await createWeb({
     log,
     ssl,
     allowUnsecure
   });
+
+  process.on("SIGINT", () => {
+    log("info", "Got SIGINT (aka ctrl-c in docker). Graceful shutdown ");
+    shutdown();
+  });
+
+  process.on("SIGTERM", () => {
+    log("info", "Got SIGTERM (docker container stop). Graceful shutdown ");
+    shutdown();
+  });
+
   app.use(passport.initialize());
   addRoutes(actions, "./client");
   start(port);

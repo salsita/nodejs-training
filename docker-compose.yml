@@ -1,0 +1,34 @@
+version: '3.6'
+
+services:
+  api:
+    build:
+      context: .
+      args:
+        - NODE_ENV=development
+    # On Windows -L flag is needed to poll for changes on filesystem
+    command: sh -c "../node_modules/.bin/node-pg-migrate up && ../node_modules/.bin/nodemon -L --inspect=0.0.0.0:9229"
+    ports:
+      - "3001:80"
+      - "9229:9229"
+    image: app-api
+    container_name: app-api
+    volumes:
+      - .:/srv/app/:delegated
+      - notused:/srv/app/node_modules
+      - notused-client:/srv/app/client-auth/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://ubuntu:db-password@postgres:5432/app-db
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:10.4-alpine
+    container_name: app-postgres
+    environment:
+      POSTGRES_USER: ubuntu
+      POSTGRES_PASSWORD: db-password
+      POSTGRES_DB: app-db
+
+volumes:
+  notused:

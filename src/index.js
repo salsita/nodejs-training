@@ -3,7 +3,7 @@ const createWeb = require("@salsita/koa-server");
 const { connect: connectDB } = require("./db");
 const config = require("./config");
 const actions = require("./actions");
-const passport = require("./auth/passport");
+const passport = require("koa-passport");
 
 const { ssl, allowUnsecure, port } = config;
 

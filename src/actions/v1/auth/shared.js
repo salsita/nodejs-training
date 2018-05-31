@@ -1,6 +1,6 @@
 const Router = require("koa-router");
-const passport = require("../../../auth/passport");
-const { createSessionToken } = require("../../../auth/utils");
+const passport = require("koa-passport");
+const { createSessionToken } = require("../../../auth/jwt");
 const { apiBase } = require("../../../config");
 const baseUrl = require("../../../helpers/baseUrl");
 const createStoreAuthTokenCode = require("../../../helpers/createStoreAuthTokenCode");

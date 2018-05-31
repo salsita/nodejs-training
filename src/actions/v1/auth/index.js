@@ -1,6 +1,6 @@
 const Router = require("koa-router");
 
-const authMiddleware = require("../authMiddleware");
+const { middleware: authMiddleware } = require("../../../auth/jwt");
 
 const google = require("./google");
 const github = require("./github");
@@ -12,7 +12,7 @@ router.use("/github", github.routes(), github.allowedMethods());
 router.use("/google", google.routes(), google.allowedMethods());
 router.use("/login", local.routes(), local.allowedMethods());
 
-router.get("/test", ...authMiddleware, async ctx => {
+router.get("/test", authMiddleware, async ctx => {
   ctx.body = { message: "ok" };
 });
 

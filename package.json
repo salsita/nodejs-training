@@ -46,6 +46,7 @@
     "@salsita/errors": "1.0.0",
     "@salsita/koa-error-middleware": "1.0.0",
     "@salsita/koa-joi-middleware": "1.0.0",
+    "@salsita/koa-jwt-auth": "1.0.0",
     "@salsita/koa-server": "1.0.0",
     "@salsita/prune-values": "1.0.0",
     "@salsita/psql": "1.0.0",

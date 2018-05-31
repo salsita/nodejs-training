@@ -5,7 +5,7 @@ const {
   algorithm,
   isSessionValid
 } = require("../../auth/utils");
-const AuthError = require("../../errors/AuthError");
+const { AuthError } = require("@salsita/errors");
 
 const { auth } = require("../../config");
 const { usersModel } = require("../../db");

@@ -1,8 +1,8 @@
 const HTTPStatus = require("http-status");
+const joiMiddleware = require("@salsita/koa-joi-middleware");
 const { userApiToDB, userDbToApi, skillDbToApi } = require("../mapping");
 const { create } = require("../../../services/users");
 const { userSkillsModel } = require("../../../db");
-const joiMiddleware = require("../../joiMiddleware");
 const { userSchemaRequired } = require("../../../validations/user");
 
 /**

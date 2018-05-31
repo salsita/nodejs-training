@@ -1,5 +1,4 @@
-const DBError = require("../errors/DBError");
-const ValidationError = require("../errors/ValidationError");
+const { DBError, ValidationError } = require("@salsita/errors");
 
 module.exports = (constraints, fn) => async (...args) => {
   try {

@@ -1,9 +1,9 @@
 const joi = require("joi");
+const joiMiddleware = require("@salsita/koa-joi-middleware");
+const { NotFoundError } = require("@salsita/errors");
 const { skillDbToApi, userDbToApi } = require("../mapping");
 const { usersModel, userSkillsModel } = require("../../../db");
-const joiMiddleware = require("../../joiMiddleware");
 const { userId } = require("../../../validations/user");
-const NotFoundError = require("../../../errors/NotFoundError");
 
 /**
  * @api {get} /api/v1/users/:id Retrieve an user

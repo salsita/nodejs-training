@@ -5,9 +5,9 @@ const {
   usersModel,
   userSkillsModel
 } = require("../db");
-const pruneValues = require("../helpers/pruneValues");
+const pruneValues = require("@salsita/prune-values");
+const { NotFoundError } = require("@salsita/errors");
 const uniqConstraintCatch = require("../helpers/uniqConstraintCatch");
-const NotFoundError = require("../errors/NotFoundError");
 
 const uniqEmailConstraint = "idx_user_email_uniq";
 

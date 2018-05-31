@@ -8,13 +8,17 @@ const baseUrl = require("../../src/helpers/baseUrl");
 class CustomPage {
   static async build() {
     const browser = await puppeteer.launch({
-      args: isWsl ? ["--no-sandbox", "--disable-setuid-sandbox"] : [],
+      // args: isWsl ? ["--no-sandbox", "--disable-setuid-sandbox"] : [],
+      executablePath: isWsl
+        ? "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+        : undefined,
       headless: true // switching to false is slower, but better for debugging
     });
     const page = await browser.newPage();
     const customPage = new CustomPage(page);
 
     page.on("console", ({ _text }) =>
+      // eslint-disable-next-line no-console
       console.log.apply(console, ["[Browser]", _text])
     );
 

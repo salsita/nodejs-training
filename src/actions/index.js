@@ -18,22 +18,26 @@ apiRouter.all("(.*)", () => {
 });
 
 // module.exports = apiRouter;
-// HACK for auth demo below
+// "HACK" for auth demo below
 
-const serve = require("koa-static");
-const send = require("koa-send");
-// eslint-disable-next-line import/no-extraneous-dependencies
-const mount = require("koa-mount");
-
-const path = "/auth";
 const distDir = "./client-auth/build";
-const router = new Router();
-router.use(mount(path, serve(distDir)));
-router.use(path, ctx => send(ctx, `${distDir}/index.html`));
-router.all(`${path}(.*)`, () => {
-  throw new NotFoundError(HTTPStatus[HTTPStatus.NOT_FOUND]);
-});
+const authPrefix = "/auth";
 
+const serve = require("koa-static")(distDir);
+const send = require("koa-send");
+
+const authRouter = new Router({
+  prefix: authPrefix
+});
+authRouter.use(async (ctx, next) => {
+  ctx.path = ctx.path.replace(authPrefix, "") || "/";
+  await serve(ctx, next);
+});
+authRouter.use("(.*)", ctx => send(ctx, `${distDir}/index.html`));
+authRouter.all("(.*)", () => {});
+
+const router = new Router();
 router.use(apiRouter.routes(), apiRouter.allowedMethods());
+router.use(authRouter.routes(), authRouter.allowedMethods());
 
 module.exports = router;

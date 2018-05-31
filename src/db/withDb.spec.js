@@ -6,14 +6,9 @@ const pg = require("pg");
 const withDb = require("./withDb");
 
 const { expect } = chai;
+const sandbox = sinon.createSandbox();
 
 describe("wrap", () => {
-  let sandbox;
-
-  beforeEach(() => {
-    sandbox = sinon.sandbox.create();
-  });
-
   afterEach(() => {
     sandbox.restore();
   });

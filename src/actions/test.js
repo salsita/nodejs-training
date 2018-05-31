@@ -2,7 +2,6 @@ const createWeb = require("@salsita/koa-server");
 const {
   connect: { pool }
 } = require("../db");
-const log = require("../helpers/log");
 const actions = require(".");
 
 after(async () => {
@@ -10,7 +9,7 @@ after(async () => {
 });
 
 module.exports = (async () => {
-  const web = await createWeb({ log });
+  const web = await createWeb();
   web.addRoutes(actions);
   return web;
 })();

@@ -9,14 +9,12 @@
   "private": true,
   "scripts": {
     "precommit": "lint-staged",
-    "postinstall":
-      "npm run migrate up && npm run snyk protect && npm install --prefix client-auth",
+    "postinstall": "npm run migrate up && npm run snyk protect && npm install --prefix client-auth",
     "start": "node ./src",
     "start:dev": "nodemon ./src",
     "lint": "eslint -c eslintrc.js .",
     "lintfix": "npm run lint -- --fix",
-    "test":
-      "cross-env NODE_ENV=test mocha --opts ./mocha.opts \"./{,!(node_modules)/**/}*.spec.js\"",
+    "test": "cross-env NODE_ENV=test mocha --opts ./mocha.opts \"./{,!(node_modules)/**/}*.spec.js\"",
     "test:watch": "npm test -- --watch",
     "migrate": "node-pg-migrate",
     "snyk": "snyk",
@@ -36,7 +34,7 @@
     "lint-staged": "7.1.2",
     "mocha": "5.2.0",
     "nodemon": "1.17.5",
-    "prettier": "1.13.0",
+    "prettier": "1.13.3",
     "puppeteer": "1.4.0",
     "sinon": "5.0.10",
     "sinon-chai": "3.1.0",
@@ -47,7 +45,7 @@
     "http-status": "1.1.2",
     "is-wsl": "1.1.0",
     "joi": "13.3.0",
-    "jsonwebtoken": "8.2.1",
+    "jsonwebtoken": "8.2.2",
     "koa": "2.5.1",
     "koa-bodyparser": "4.2.1",
     "koa-compress": "3.0.0",
@@ -70,8 +68,14 @@
     "winston": "2.4.2"
   },
   "lint-staged": {
-    "*.js": ["npm run lintfix", "git add"],
-    "*.{json,md}": ["prettier --write", "git add"]
+    "*.js": [
+      "npm run lintfix",
+      "git add"
+    ],
+    "*.{json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "engines": {
     "node": "10.2.1",

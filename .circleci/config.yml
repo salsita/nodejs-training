@@ -43,4 +43,4 @@ jobs:
             EOF
       - run:
           name: test
-          command: npm test
+          command: npm run migrate up && npm test

@@ -1,6 +1,6 @@
 const squel = require("../squel");
-const { onlyRows } = require("../utils/wrap");
-const quote = require("../utils/quote");
+const onlyRows = require("@salsita/psql/utils/onlyRows");
+const quote = require("@salsita/psql/utils/quote");
 
 const findAll = onlyRows(dbClient =>
   dbClient.query(

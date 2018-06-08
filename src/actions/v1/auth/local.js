@@ -1,7 +1,7 @@
 const Router = require("koa-router");
+const passport = require("koa-passport");
 const { Strategy } = require("passport-local");
 const { usersModel } = require("../../../db");
-const passport = require("../../../auth/passport");
 const { encryptPassword } = require("../../../auth/utils");
 const { authConfig, successResponse } = require("./shared");
 

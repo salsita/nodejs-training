@@ -2,7 +2,7 @@ const puppeteer = require("puppeteer");
 const isWsl = require("is-wsl");
 const { createUser, removeUser } = require("./user");
 const createStoreAuthTokenCode = require("../../src/helpers/createStoreAuthTokenCode");
-const { createSessionToken } = require("../../src/auth/utils");
+const { createSessionToken } = require("../../src/auth/jwt");
 const baseUrl = require("../../src/helpers/baseUrl");
 
 class CustomPage {

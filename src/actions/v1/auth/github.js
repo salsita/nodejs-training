@@ -1,6 +1,6 @@
+const passport = require("koa-passport");
 const { Strategy } = require("passport-github");
 const { auth } = require("../../../config");
-const passport = require("../../../auth/passport");
 const { usersModel } = require("../../../db");
 const { getCallbackUrl, createRouter } = require("./shared");
 

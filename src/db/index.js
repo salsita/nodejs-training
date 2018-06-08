@@ -1,19 +1,20 @@
 const _ = require("lodash");
-const withDb = require("./withDb");
+const psql = require("@salsita/psql");
 
-const connect = require("./connect");
+const { db } = require("../config");
+const log = require("../helpers/log");
 
-const transaction = require("./transaction");
 const squel = require("./squel");
 
 const skills = require("./models/skills");
 const users = require("./models/users");
 const userSkills = require("./models/userSkills");
 
+const connect = psql.connect({ log, options: db });
+const withDb = psql.withDb(connect);
+
 module.exports = {
   connect,
-
-  transaction,
   squel,
 
   skillsModel: _.mapValues(skills, withDb),

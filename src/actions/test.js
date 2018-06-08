@@ -1,7 +1,7 @@
+const createWeb = require("@salsita/koa-server");
 const {
   connect: { pool }
 } = require("../db");
-const createWeb = require("../web");
 const actions = require(".");
 
 after(async () => {

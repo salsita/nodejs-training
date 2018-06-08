@@ -1,9 +1,9 @@
 const joi = require("joi");
 const HTTPStatus = require("http-status");
+const joiMiddleware = require("@salsita/koa-joi-middleware");
+const { NotFoundError } = require("@salsita/errors");
 const { usersModel } = require("../../../db");
-const joiMiddleware = require("../../joiMiddleware");
 const { userId } = require("../../../validations/user");
-const NotFoundError = require("../../../errors/NotFoundError");
 
 /**
  * @api {delete} /api/v1/users/:id Delete an user

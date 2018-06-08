@@ -1,8 +1,9 @@
 const HTTPStatus = require("http-status");
 const Router = require("koa-router");
-const errorMiddleware = require("./errorMiddleware");
+const { NotFoundError } = require("@salsita/errors");
+const errorMiddleware = require("@salsita/koa-error-middleware");
 const config = require("../config");
-const NotFoundError = require("../errors/NotFoundError");
+const log = require("../helpers/log");
 
 const v1 = require("./v1");
 
@@ -11,7 +12,7 @@ const apiRouter = new Router({
   prefix: apiBase
 });
 
-apiRouter.use(errorMiddleware);
+apiRouter.use(errorMiddleware(log));
 apiRouter.use("/v1", v1.routes(), v1.allowedMethods());
 apiRouter.all("(.*)", () => {
   throw new NotFoundError(HTTPStatus[HTTPStatus.NOT_FOUND]);
@@ -19,6 +20,7 @@ apiRouter.all("(.*)", () => {
 
 // module.exports = apiRouter;
 // "HACK" for auth demo below
+/* eslint-disable import/no-extraneous-dependencies */
 
 const distDir = "./client-auth/build";
 const authPrefix = "/auth";

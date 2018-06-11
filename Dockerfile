@@ -14,7 +14,7 @@ HEALTHCHECK CMD curl -fs http://localhost:$PORT/ || exit 1
 WORKDIR /srv
 COPY package.json package-lock.json* .snyk ./
 RUN npm install --unsafe-perm && npm cache clean --force
-ENV PATH /opt/node_modules/.bin:$PATH
+ENV PATH /srv/node_modules/.bin:$PATH
 
 WORKDIR /srv/app
 COPY . /srv/app

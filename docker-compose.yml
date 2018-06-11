@@ -7,7 +7,7 @@ services:
       args:
         - NODE_ENV=development
     # On Windows -L flag is needed to poll for changes on filesystem
-    command: sh -c "../node_modules/.bin/node-pg-migrate up && ../node_modules/.bin/nodemon -L --inspect=0.0.0.0:9229"
+    command: sh -c "node-pg-migrate up && nodemon -L --inspect=0.0.0.0:9229"
     ports:
       - "3001:80"
       - "9229:9229"

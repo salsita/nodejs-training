@@ -1,9 +1,10 @@
-const log = require("./helpers/log");
 const createWeb = require("@salsita/koa-server");
+const passport = require("koa-passport");
+
+const log = require("./helpers/log");
 const { connect: connectDB } = require("./db");
 const config = require("./config");
 const actions = require("./actions");
-const passport = require("koa-passport");
 
 const { ssl, allowUnsecure, port } = config;
 

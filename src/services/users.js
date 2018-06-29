@@ -1,8 +1,8 @@
 const _ = require("lodash");
-const { connect: connectDB, usersModel, userSkillsModel } = require("../db");
 const { transaction } = require("@salsita/psql");
 const pruneValues = require("@salsita/prune-values");
 const { NotFoundError } = require("@salsita/errors");
+const { connect: connectDB, usersModel, userSkillsModel } = require("../db");
 const uniqConstraintCatch = require("../helpers/uniqConstraintCatch");
 
 const uniqEmailConstraint = "idx_user_email_uniq";

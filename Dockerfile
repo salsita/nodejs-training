@@ -1,4 +1,4 @@
-FROM node:10.4-alpine
+FROM node:10.5-alpine
 
 RUN mkdir -p /srv/app
 

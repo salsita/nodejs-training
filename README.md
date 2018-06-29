@@ -16,6 +16,7 @@ and secret to configure nodejs app.
 heroku addons:create papertrail:choklad
 heroku addons:create heroku-postgresql:hobby-dev
 heroku config:set PGSSLMODE=require
+heroku config:set NPM_CONFIG_PRODUCTION=false # to install dev dependencies
 heroku config:set JWT_KEY=<some random string>
 heroku config:set DOMAIN=<url of your app>
 heroku config:set GITHUB_CLIENT_ID=<insert>

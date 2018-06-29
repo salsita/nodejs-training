@@ -20,7 +20,7 @@ apiRouter.all("(.*)", () => {
 
 // module.exports = apiRouter;
 // "HACK" for auth demo below
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/order,import/no-extraneous-dependencies */
 
 const distDir = "./client-auth/build";
 const authPrefix = "/auth";

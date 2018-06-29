@@ -62,8 +62,7 @@ module.exports = [
       (await skillsModel.findAll()).map(skillDbToApi),
       "id"
     );
-    const skillsByUser = _
-      .chain(await userSkillsModel.findAll())
+    const skillsByUser = _.chain(await userSkillsModel.findAll())
       .groupBy("userId")
       .mapValues(userSkills =>
         userSkills.map(({ skillId }) => ({ skill: skills[skillId] }))

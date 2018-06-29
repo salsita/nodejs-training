@@ -1,5 +1,5 @@
-const squel = require("../squel");
 const onlyRows = require("@salsita/psql/utils/onlyRows");
+const squel = require("../squel");
 
 // eslint-disable-next-line import/prefer-default-export
 const findAll = onlyRows(dbClient =>

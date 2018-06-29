@@ -3,11 +3,18 @@ const util = require("util");
 const config = require("../config");
 
 const { log: logOptions } = config;
-winston.remove(winston.transports.Console);
-winston.add(winston.transports.Console, {
-  ...logOptions,
-  timestamp: true
+
+const logger = winston.createLogger({
+  level: logOptions.level,
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    logOptions.colorize && winston.format.colorize(),
+    winston.format.printf(
+      info => `${info.timestamp} - ${info.level}: ${info.message}`
+    )
+  ),
+  transports: [new winston.transports.Console()]
 });
 
 module.exports = (level, ...message) =>
-  winston.log(level, util.format(...message));
+  logger.log({ level, message: util.format(...message) });

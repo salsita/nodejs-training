@@ -55,6 +55,15 @@ jobs:
   test:
     docker:
       - <<: *node-image
+        environment:
+          - DATABASE_URL=postgres://ubuntu:@127.0.0.1:5432/circle_test
+          - ALLOW_UNSECURE=1
+          - DOMAIN=localhost:3001
+          - PORT=3001
+      - image: postgres:10.4-alpine
+        environment:
+          - POSTGRES_USER=ubuntu
+          - POSTGRES_DB=circle_test
     steps:
       - <<: *restore
       - run:

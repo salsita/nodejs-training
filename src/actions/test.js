@@ -1,4 +1,5 @@
-const createWeb = require("@salsita/koa-server");
+const { createWeb } = require("@salsita/koa-server");
+const log = require("../helpers/log");
 const {
   connect: { pool }
 } = require("../db");
@@ -8,8 +9,9 @@ after(async () => {
   await pool.end();
 });
 
-module.exports = (async () => {
-  const web = await createWeb();
-  web.addRoutes(actions);
-  return web;
-})();
+const { addRoutes, createServer } = createWeb(log);
+addRoutes(actions);
+
+const serverPromise = createServer();
+
+module.exports = () => serverPromise;

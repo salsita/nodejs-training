@@ -4,6 +4,7 @@ const { NotFoundError } = require("@salsita/errors");
 const errorMiddleware = require("@salsita/koa-error-middleware");
 const config = require("../config");
 const log = require("../helpers/log");
+const pe = require("../helpers/prettyError");
 
 const v1 = require("./v1");
 
@@ -12,7 +13,12 @@ const apiRouter = new Router({
   prefix: apiBase
 });
 
-apiRouter.use(errorMiddleware(log));
+const formatUserMessage = err =>
+  process.env.NODE_ENV === "production"
+    ? err.message || "Ooops something went wrong"
+    : pe(err, false, false);
+
+apiRouter.use(errorMiddleware(log, formatUserMessage));
 apiRouter.use("/v1", v1.routes(), v1.allowedMethods());
 apiRouter.all("(.*)", () => {
   throw new NotFoundError(HTTPStatus[HTTPStatus.NOT_FOUND]);

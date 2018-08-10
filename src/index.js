@@ -1,12 +1,12 @@
-const createWeb = require("@salsita/koa-server");
 const passport = require("koa-passport");
 
 const log = require("./helpers/log");
+const { app, createServer, start, addRoutes, shutdown } = require("./web");
 const { connect: connectDB } = require("./db");
 const config = require("./config");
 const actions = require("./actions");
 
-const { ssl, allowUnsecure, port } = config;
+const { port } = config;
 
 process.on("unhandledRejection", (reason, p) => {
   log("error", "Unhandled Rejection at: Promise", p, "reason:", reason);
@@ -27,23 +27,19 @@ process.on("uncaughtException", err => {
     process.exit(1);
   }
 
-  const { app, start, addRoutes, shutdown } = await createWeb({
-    log,
-    ssl,
-    allowUnsecure
-  });
+  const server = await createServer();
 
   process.on("SIGINT", () => {
     log("info", "Got SIGINT (aka ctrl-c in docker). Graceful shutdown ");
-    shutdown();
+    shutdown(server);
   });
 
   process.on("SIGTERM", () => {
     log("info", "Got SIGTERM (docker container stop). Graceful shutdown ");
-    shutdown();
+    shutdown(server);
   });
 
   app.use(passport.initialize());
   addRoutes(actions, "./client");
-  start(port);
+  start(server, port);
 })();

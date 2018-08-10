@@ -2,7 +2,7 @@
 const chai = require("chai");
 const supertest = require("supertest");
 
-const web = require("../../test");
+const getServer = require("../../test");
 
 const { expect } = chai;
 
@@ -10,7 +10,7 @@ describe("/api/v1/skills", () => {
   let server;
 
   before(async () => {
-    server = (await web).server; // eslint-disable-line prefer-destructuring
+    server = await getServer();
   });
 
   it("should get skills", async () => {

@@ -138,3 +138,4 @@ for testing your API calls and `puppeteer` for testing front-end code (see puppe
 - [node compatibility table](https://node.green/)
 - [API docs](https://nodejs.org/docs/latest/api/)
 - [Awesome node.js](https://node.cool) (aka node.cool)
+- [Node.JS best practices list](https://github.com/i0natan/nodebestpractices)

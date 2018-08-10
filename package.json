@@ -37,18 +37,18 @@
     "lint-staged": "7.2.0",
     "mocha": "5.2.0",
     "nodemon": "1.18.3",
-    "prettier": "1.14.0",
-    "puppeteer": "1.6.2",
-    "sinon": "6.1.4",
+    "prettier": "1.14.2",
+    "puppeteer": "1.7.0",
+    "sinon": "6.1.5",
     "sinon-chai": "3.2.0",
     "supertest": "3.1.0"
   },
   "dependencies": {
     "@salsita/errors": "1.0.1",
-    "@salsita/koa-error-middleware": "1.0.1",
+    "@salsita/koa-error-middleware": "1.1.0",
     "@salsita/koa-joi-middleware": "1.0.1",
     "@salsita/koa-jwt-auth": "1.0.1",
-    "@salsita/koa-server": "1.1.1",
+    "@salsita/koa-server": "1.2.0",
     "@salsita/prune-values": "1.0.0",
     "@salsita/psql": "1.0.1",
     "dotenv": "6.0.0",
@@ -65,7 +65,8 @@
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
     "pg": "7.4.3",
-    "snyk": "1.90.0",
+    "pretty-error": "2.1.1",
+    "snyk": "1.90.2",
     "squel": "5.12.2",
     "winston": "3.0.0"
   },
@@ -80,8 +81,8 @@
     ]
   },
   "engines": {
-    "node": "10.5.0",
-    "npm": "6.1.0"
+    "node": "10.8.0",
+    "npm": "6.3.0"
   },
   "snyk": true
 }

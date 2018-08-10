@@ -2,7 +2,7 @@
 const chai = require("chai");
 const supertest = require("supertest");
 
-const web = require("../../test");
+const getServer = require("../../test");
 const { connect: connectDB, squel } = require("../../../db");
 
 const { expect } = chai;
@@ -14,7 +14,7 @@ describe("/api/v1/users", () => {
   let newUserId;
 
   before(async () => {
-    server = (await web).server; // eslint-disable-line prefer-destructuring
+    server = await getServer();
 
     const { body } = await supertest(server)
       .get("/api/v1/skills")

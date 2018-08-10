@@ -1,7 +1,7 @@
 version: 2
 
 node-image: &node-image
-  image: circleci/node:10.5
+  image: circleci/node:10.8
 
 set-npm-global: &set-npm-global
   run:
@@ -31,7 +31,7 @@ jobs:
     steps:
       - checkout
       - <<: *set-npm-global
-      - run: npm install -g npm@6.1.0
+      - run: npm install -g npm@6.3.0
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:

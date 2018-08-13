@@ -1,0 +1,30 @@
+{
+  "name": "nodejs-training",
+  "scripts": {},
+  "env": {
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    },
+    "PGSSLMODE": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": ["papertrail:choklad", "heroku-postgresql:hobby-dev"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "environments": {
+    "test": {
+      "env": {
+        "NPM_CONFIG_PRODUCTION": false
+      }
+    }
+  }
+}

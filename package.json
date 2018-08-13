@@ -19,7 +19,8 @@
     "test:watch": "npm test -- --watch",
     "migrate": "node-pg-migrate",
     "snyk": "snyk",
-    "apidoc": "apidoc -f \".*\\.js$\" -i src/actions/ -o apidoc/"
+    "apidoc": "apidoc -f \".*\\.js$\" -i src/actions/ -o apidoc/",
+    "heroku-postbuild": "npm run migrate up"
   },
   "devDependencies": {
     "apidoc": "0.17.6",

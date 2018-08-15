@@ -43,7 +43,10 @@ Copy `.env.dev` to `.env` and update settings:
 - `GOOGLE_CLIENT_ID` - from OAuth app you created
 - `GOOGLE_CLIENT_SECRET` - from OAuth app you created
 
-And run either via `npm run start:dev` or `npm start`
+And run either via
+
+- `npm run start:dev` or `npm start`
+- (`docker-compose build` when dependencies change) and `docker-compose up`
 
 ## Training plan
 
@@ -87,6 +90,14 @@ for testing your API calls and `puppeteer` for testing front-end code (see puppe
 
 ## What we use:
 
+### Services:
+
+- [Circle CI](https://circleci.com/docs/2.0/basics/) - CI/test server
+- [Greenkeeper](https://greenkeeper.io/) - Automated dependency management
+- [Docker](https://docs.docker.com/get-started/) - For united development experience
+- [Heroku](https://devcenter.heroku.com/categories/heroku-architecture) - For deployment and app pipelines
+- [Snyk](https://snyk.io/docs/using-snyk/) - Protect against vulnerabilities
+
 ### Dependencies:
 
 - [koa](http://koajs.com/) - server
@@ -99,13 +110,16 @@ for testing your API calls and `puppeteer` for testing front-end code (see puppe
 - [koa-morgan](https://www.npmjs.com/package/koa-morgan) - HTTP(s) request logger (also see [koa-logger](https://www.npmjs.com/package/koa-logger) and [koa-json](https://www.npmjs.com/package/koa-json))
 - [koa-send](https://www.npmjs.com/package/koa-send) - serving static files
 - [koa-static](https://www.npmjs.com/package/koa-static) - serving static directories
+- [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage) - share context inside request
 - [joi](https://www.npmjs.com/package/joi) - validation
 - [pg](https://node-postgres.com/) - DB
 - [node-pg-migrate](https://www.npmjs.com/package/node-pg-migrate) - DB migrations
 - [squel](https://hiddentao.com/squel/) - SQL building (also see [knex](http://knexjs.org/) and [sequelize](http://docs.sequelizejs.com/))
 - [winston](https://www.npmjs.com/package/winston) - logging
+- [pretty-error](https://www.npmjs.com/package/pretty-error) - formatting node.js errors
 - [snyk](https://snyk.io/docs/using-snyk/) - protect against vulnerabilities
 - [dotenv](https://www.npmjs.com/package/dotenv) - reading .env file
+- [uuid](https://www.npmjs.com/package/uuid) - generating uuids
 
 ### Dev:
 

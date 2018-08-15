@@ -24,7 +24,7 @@ services:
       - postgres
 
   postgres:
-    image: postgres:10.4-alpine
+    image: postgres:10.5-alpine
     container_name: app-postgres
     environment:
       POSTGRES_USER: ubuntu

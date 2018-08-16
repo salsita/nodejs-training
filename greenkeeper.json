@@ -1,0 +1,10 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "client-auth/package.json",
+        "package.json"
+      ]
+    }
+  }
+}

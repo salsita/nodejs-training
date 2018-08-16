@@ -1,6 +1,6 @@
 const winston = require("winston");
 const util = require("util");
-const { getTransactionId } = require("@salsita/koa-server");
+const { getRequestId } = require("@salsita/koa-server");
 const config = require("../config");
 const pe = require("./prettyError");
 
@@ -13,8 +13,8 @@ const logger = winston.createLogger({
       winston.format.timestamp(),
       logOptions.colorize && winston.format.colorize(),
       winston.format.printf(({ timestamp, level, message }) => {
-        const transactionId = getTransactionId();
-        return `${timestamp} - ${level} (${transactionId}): ${message}`;
+        const requestId = getRequestId() || "not in request";
+        return `${timestamp} - ${level} (rid:${requestId}): ${message}`;
       })
     ].filter(Boolean)
   ),

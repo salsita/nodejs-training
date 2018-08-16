@@ -9,6 +9,7 @@
 Backend part for our frontend (react/angular) trainings
 
 - [REST API docs](http://salsita.github.io/nodejs-training/apidoc/) (generated with [http://apidocjs.com/](apidoc))
+- See [https://github.com/salsita/nodejs-modules](nodejs-modules) for common packages.
 
 ## Deployment/Running:
 

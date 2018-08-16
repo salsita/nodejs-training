@@ -1,8 +1,12 @@
 # nodejs-training
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/salsita/nodejs-training.svg)](https://greenkeeper.io/)
+[![Dependency Status](https://img.shields.io/david/salsita/nodejs-training.svg)](https://david-dm.org/salsita/nodejs-training)
+[![devDependency Status](https://img.shields.io/david/dev/salsita/nodejs-training.svg)](https://david-dm.org/salsita/nodejs-training?type=dev)
+![Licence](https://img.shields.io/npm/l/nodejs-training.svg?style=flat)
+[![Known Vulnerabilities](https://snyk.io/test/github/salsita/nodejs-training/badge.svg)](https://snyk.io/test/github/salsita/nodejs-training)
 
-backend part for our frontend (react/angular) trainings
+Backend part for our frontend (react/angular) trainings
 
 - [REST API docs](http://salsita.github.io/nodejs-training/apidoc/) (generated with [http://apidocjs.com/](apidoc))
 

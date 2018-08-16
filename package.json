@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/salsita/nodejs-training"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "precommit": "lint-staged",

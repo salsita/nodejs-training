@@ -45,8 +45,9 @@ Copy `.env.dev` to `.env` and update settings:
 
 And run either via
 
-- `npm run start:dev` or `npm start`
-- (`docker-compose build` when dependencies change) and `docker-compose up`
+- `npm run start:dev` or `npm start` (you need to have node, postgres and everything installed locally)
+- (`docker-compose build` when dependencies change) and `docker-compose up` (you need only docker and there should be no "works on my machine" issue :tada:)
+- for running in production use app docker image directly or use [docker swarm](https://docs.docker.com/engine/swarm/) (TODO)
 
 ## Training plan
 
@@ -75,7 +76,8 @@ All thrown exceptions will be caught and transformed to JSON for client (see [`e
 Authentication layer is provided via [passport](http://www.passportjs.org/) package, using JWT authentication header (no cookie, no session).
 OAuth examples provided through Google and Github, also logging in via local user/password is present.
 After successful authentication JS code is sent to client which stores JWT token to local storage and reloads page
-(so client app can retrieve and use this token).
+(so client app can retrieve and use this token). (You should use cookies for storing JWT if all your client apps support it,
+as [cookies are usually more secure than local storage](https://dev.to/rdegges/please-stop-using-local-storage-1i04))
 Secured endpoints should use [`authMiddleware`](./src/actions/v1/authMiddleware.js) (Checks JWT token in header
 and tries to populate `ctx.state.user` with user object).
 
@@ -88,6 +90,39 @@ Use mocha/jest/ava/... whatever you want.
 I can recommend using `supertest` (see testing users api [`/src/actions/v1/users/index.spec.js`](./src/actions/v1/users/index.spec.js))
 for testing your API calls and `puppeteer` for testing front-end code (see puppeteer example at [`/tests/puppeteer.spec.js`](./tests/puppeteer.spec.js)).
 
+### Request data
+
+We are using [`cls-hooked`](https://www.npmjs.com/package/cls-hooked) to share context inside request. It is used for keeping request id
+accessible for logging even on places where you do not have direct access to request. If you are making request to external (micro)services,
+you should keep this request id for better logging. e.g.
+
+```js
+const axios = require("axios");
+const { getRequestId } = require("@salsita/koa-server");
+axios.get("http://example.com", {
+  headers: { "x-request-id": getRequestId() }
+});
+```
+
+If really necessary you can also use this storage for your own data. e.g.
+
+```js
+const { getNamespace } = require("cls-hooked");
+const { requestNSName } = require("@salsita/koa-server");
+
+const request = getNamespace(requestNSName);
+
+const data = {};
+request.set("mydata", data);
+
+// somewhere else
+const { getNamespace } = require("cls-hooked");
+const { requestNSName } = require("@salsita/koa-server");
+
+const request = getNamespace(requestNSName);
+const data = request.get("mydata");
+```
+
 ## What we use:
 
 ### Services:
@@ -95,8 +130,8 @@ for testing your API calls and `puppeteer` for testing front-end code (see puppe
 - [Circle CI](https://circleci.com/docs/2.0/basics/) - CI/test server
 - [Greenkeeper](https://greenkeeper.io/) - Automated dependency management
 - [Docker](https://docs.docker.com/get-started/) - For united development experience
-- [Heroku](https://devcenter.heroku.com/categories/heroku-architecture) - For deployment and app pipelines
-- [Snyk](https://snyk.io/docs/using-snyk/) - Protect against vulnerabilities
+- [Heroku](https://devcenter.heroku.com/categories/heroku-architecture) - For deployment and review apps
+- [Snyk](https://snyk.io/docs/using-snyk/) - Find/Protect against vulnerabilities in 3rd party code
 
 ### Dependencies:
 
@@ -110,7 +145,6 @@ for testing your API calls and `puppeteer` for testing front-end code (see puppe
 - [koa-morgan](https://www.npmjs.com/package/koa-morgan) - HTTP(s) request logger (also see [koa-logger](https://www.npmjs.com/package/koa-logger) and [koa-json](https://www.npmjs.com/package/koa-json))
 - [koa-send](https://www.npmjs.com/package/koa-send) - serving static files
 - [koa-static](https://www.npmjs.com/package/koa-static) - serving static directories
-- [continuation-local-storage](https://www.npmjs.com/package/continuation-local-storage) - share context inside request
 - [joi](https://www.npmjs.com/package/joi) - validation
 - [pg](https://node-postgres.com/) - DB
 - [node-pg-migrate](https://www.npmjs.com/package/node-pg-migrate) - DB migrations

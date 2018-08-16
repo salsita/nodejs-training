@@ -1,5 +1,7 @@
 # nodejs-training
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/salsita/nodejs-training.svg)](https://greenkeeper.io/)
+
 backend part for our frontend (react/angular) trainings
 
 - [REST API docs](http://salsita.github.io/nodejs-training/apidoc/) (generated with [http://apidocjs.com/](apidoc))

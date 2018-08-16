@@ -3,13 +3,14 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/salsita/nodejs-training.svg)](https://greenkeeper.io/)
 [![Dependency Status](https://img.shields.io/david/salsita/nodejs-training.svg)](https://david-dm.org/salsita/nodejs-training)
 [![devDependency Status](https://img.shields.io/david/dev/salsita/nodejs-training.svg)](https://david-dm.org/salsita/nodejs-training?type=dev)
-![Licence](https://img.shields.io/npm/l/nodejs-training.svg?style=flat)
+![Licence](https://img.shields.io/github/license/salsita/nodejs-training.svg)
 [![Known Vulnerabilities](https://snyk.io/test/github/salsita/nodejs-training/badge.svg)](https://snyk.io/test/github/salsita/nodejs-training)
+![CircleCI](https://img.shields.io/circleci/project/github/salsita/nodejs-training.svg)
 
 Backend part for our frontend (react/angular) trainings
 
 - [REST API docs](http://salsita.github.io/nodejs-training/apidoc/) (generated with [http://apidocjs.com/](apidoc))
-- See [https://github.com/salsita/nodejs-modules](nodejs-modules) for common packages.
+- See [nodejs-modules](https://github.com/salsita/nodejs-modules) for common packages.
 
 ## Deployment/Running:
 

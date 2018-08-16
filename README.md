@@ -5,7 +5,7 @@
 [![devDependency Status](https://img.shields.io/david/dev/salsita/nodejs-training.svg)](https://david-dm.org/salsita/nodejs-training?type=dev)
 ![Licence](https://img.shields.io/github/license/salsita/nodejs-training.svg)
 [![Known Vulnerabilities](https://snyk.io/test/github/salsita/nodejs-training/badge.svg)](https://snyk.io/test/github/salsita/nodejs-training)
-![CircleCI](https://img.shields.io/circleci/project/github/salsita/nodejs-training.svg)
+[![CircleCI](https://img.shields.io/circleci/project/github/salsita/nodejs-training.svg)](https://circleci.com/gh/salsita/workflows/nodejs-training)
 
 Backend part for our frontend (react/angular) trainings
 

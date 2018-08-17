@@ -11,7 +11,7 @@ passport.use(
       callbackURL: getCallbackUrl("google")
     },
     async (accessToken, refreshToken, profile, done) => {
-      const email = profile.emails[0];
+      const email = profile.emails && profile.emails[0];
       const { familyName, givenName } = profile.name || {};
       const [firstName, lastName] = profile.displayName.split(/\s+/);
 

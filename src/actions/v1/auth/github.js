@@ -11,7 +11,7 @@ passport.use(
       callbackURL: getCallbackUrl("github")
     },
     async (accessToken, refreshToken, profile, done) => {
-      const email = profile.emails[0];
+      const email = profile.emails && profile.emails[0];
       const [firstName, lastName] = profile.displayName.split(/\s+/);
       try {
         const user = await usersModel.findOrCreateFromProfile(

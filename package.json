@@ -26,7 +26,7 @@
     "apidoc": "0.17.6",
     "chai": "4.1.2",
     "cross-env": "5.2.0",
-    "eslint": "5.3.0",
+    "eslint": "5.4.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "3.0.1",
     "eslint-plugin-import": "2.14.0",
@@ -67,7 +67,7 @@
     "passport-local": "1.0.0",
     "pg": "7.4.3",
     "pretty-error": "2.1.1",
-    "snyk": "1.92.3",
+    "snyk": "1.92.6",
     "squel": "5.12.2",
     "winston": "3.0.0"
   },

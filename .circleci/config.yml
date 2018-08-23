@@ -34,6 +34,8 @@ jobs:
       - run: npm install -g npm@6.3.0
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
+      - restore_cache:
+          key: dependency-cache-{{ checksum "client-auth/package.json" }}
       - run:
           name: greenkeeper
           command: |
@@ -45,6 +47,10 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - save_cache:
+          key: dependency-cache-{{ checksum "client-auth/package.json" }}
+          paths:
+            - ./client-auth/node_modules
       - <<: *save
   lint:
     docker:

@@ -13,6 +13,7 @@ const authConfig = {
   session: false
 };
 
+// also see http://nmajor.com/posts/access-and-refresh-token-handling-with-redux
 const successResponse = async ctx => {
   const sessionToken = await createSessionToken(ctx.state.user);
   ctx.body = `

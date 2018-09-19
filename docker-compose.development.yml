@@ -2,6 +2,7 @@ version: '3.6'
 
 services:
   api:
+    image: app-api
     container_name: app-api
     build:
       context: .
@@ -10,11 +11,13 @@ services:
     # On Windows -L flag is needed to poll for changes on filesystem
     command: sh -c "node-pg-migrate up && nodemon -L --inspect=0.0.0.0:9229"
     ports:
-      - "3001:80"
+      - "3001:3001"
       - "9229:9229"
     environment:
       - NODE_ENV=development
       - DATABASE_URL=postgres://ubuntu:db-password@postgres:5432/app-db
+    volumes:
+      - .:/srv/app/:delegated
 
   postgres:
     container_name: app-postgres

@@ -2,9 +2,7 @@ version: '3.6'
 
 services:
   api:
-    image: app-api
     volumes:
-      - .:/srv/app/:delegated
       - notused:/srv/app/node_modules
       - notused-client:/srv/app/client-auth/node_modules
     depends_on:

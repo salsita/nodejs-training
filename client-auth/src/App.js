@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-import { getToken } from "./login";
+import { getToken } from "./shared/login";
 
 class App extends Component {
   state = {

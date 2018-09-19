@@ -1,4 +1,4 @@
-const { storageKey, setToken } = require("../../client-auth/src/login");
+const { storageKey, setToken } = require("../../shared/login");
 
 module.exports = sessionToken => `
 var storageKey='${storageKey}';

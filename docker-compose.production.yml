@@ -1,0 +1,46 @@
+version: '3.6'
+
+services:
+  api:
+    image: org/app-api:version
+    command: sh -c "node-pg-migrate up && node src/index.js"
+    ports:
+      - "80:3001"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://ubuntu:db-password@postgres:5432/app-db
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+
+  postgres:
+    environment:
+      POSTGRES_USER: ubuntu
+      POSTGRES_PASSWORD: db-password
+      POSTGRES_DB: app-db
+    networks:
+      - webnet
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+
+networks:
+  webnet:

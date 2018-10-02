@@ -1,7 +1,14 @@
 {
-  "main.css": "static/css/main.c17080f1.css",
-  "main.css.map": "static/css/main.c17080f1.css.map",
-  "main.js": "static/js/main.a20120b8.js",
-  "main.js.map": "static/js/main.a20120b8.js.map",
-  "static/media/logo.svg": "static/media/logo.5d5d9eef.svg"
+  "main.css": "/auth/static/css/main.233ac422.chunk.css",
+  "main.js": "/auth/static/js/main.dcee724c.chunk.js",
+  "main.js.map": "/auth/static/js/main.dcee724c.chunk.js.map",
+  "static/js/1.35a02df2.chunk.js": "/auth/static/js/1.35a02df2.chunk.js",
+  "static/js/1.35a02df2.chunk.js.map": "/auth/static/js/1.35a02df2.chunk.js.map",
+  "runtime~main.js": "/auth/static/js/runtime~main.d55dabc9.js",
+  "runtime~main.js.map": "/auth/static/js/runtime~main.d55dabc9.js.map",
+  "static/media/logo.svg": "/auth/static/media/logo.5d5d9eef.svg",
+  "static/css/main.233ac422.chunk.css.map": "/auth/static/css/main.233ac422.chunk.css.map",
+  "index.html": "/auth/index.html",
+  "precache-manifest.a64fbae8b070ef655bd5b30d64edb518.js": "/auth/precache-manifest.a64fbae8b070ef655bd5b30d64edb518.js",
+  "service-worker.js": "/auth/service-worker.js"
 }

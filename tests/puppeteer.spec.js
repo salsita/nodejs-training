@@ -2,9 +2,8 @@ const { expect } = require("chai");
 const Page = require("./utils/page");
 const baseUrl = require("../src/helpers/baseUrl");
 
-describe("puppeteer", function describePuppeteer() {
+describe("puppeteer", () => {
   let page;
-  this.timeout(5000);
 
   beforeEach(async () => {
     page = await Page.build();

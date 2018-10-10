@@ -5,29 +5,38 @@ const createStoreAuthTokenCode = require("../../src/helpers/createStoreAuthToken
 const { createSessionToken } = require("../../src/auth/jwt");
 const baseUrl = require("../../src/helpers/baseUrl");
 
+const browserParams = {
+  args:
+    isWsl || Boolean(process.env.CI)
+      ? ["--no-sandbox", "--disable-setuid-sandbox"]
+      : [],
+  executablePath: isWsl
+    ? "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+    : undefined,
+  headless: true // switching to false is slower, but better for debugging
+};
+
 class CustomPage {
   static async build() {
-    const browser = await puppeteer.launch({
-      // args: isWsl ? ["--no-sandbox", "--disable-setuid-sandbox"] : [],
-      executablePath: isWsl
-        ? "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
-        : undefined,
-      headless: true // switching to false is slower, but better for debugging
-    });
+    const browser = await puppeteer.launch(browserParams);
     const page = await browser.newPage();
     const customPage = new CustomPage(page);
 
-    page.on("console", ({ _text }) =>
+    page.on("console", async message => {
       // eslint-disable-next-line no-console
-      console.log.apply(console, ["[Browser]", _text])
-    );
+      const type = console[message.type()];
+      type.call(console, "[Browser]", message.text());
+    });
 
     return new Proxy([customPage, browser, page], {
       get: function get(targets, property) {
         // eslint-disable-next-line no-restricted-syntax
         for (const target of targets) {
-          if (target[property] !== undefined) {
-            return target[property].bind(target);
+          if (property in target) {
+            const toReturn = Reflect.get(target, property);
+            return typeof toReturn === "function"
+              ? toReturn.bind(target)
+              : toReturn;
           }
         }
         return undefined;

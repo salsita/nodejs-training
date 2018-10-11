@@ -1,4 +1,8 @@
-FROM node:10.10-alpine
+FROM node:10.11-alpine
+
+LABEL maintainer="jando@salsitasoft.com"
+
+RUN apk update && apk add curl
 
 RUN mkdir -p /srv/app
 
@@ -9,7 +13,7 @@ ARG PORT=3001
 ENV PORT $PORT
 EXPOSE $PORT 9229
 
-# HEALTHCHECK CMD curl -fs http://localhost:$PORT/ || exit 1
+HEALTHCHECK CMD curl -fs http://localhost:$PORT/ || exit 1
 
 WORKDIR /srv
 COPY package.json package-lock.json .snyk ./

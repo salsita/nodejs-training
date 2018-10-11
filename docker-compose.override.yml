@@ -14,8 +14,8 @@ services:
       - "3001:3001"
       - "9229:9229"
     environment:
-      - NODE_ENV=development
-      - DATABASE_URL=postgres://ubuntu:db-password@postgres:5432/app-db
+      NODE_ENV: development
+      DATABASE_URL: postgres://ubuntu:db-password@postgres:5432/app-db
     volumes:
       - .:/srv/app/:delegated
 

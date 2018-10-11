@@ -3,14 +3,26 @@ version: '3.6'
 services:
   api:
     image: org/app-api:version
-    command: sh -c "node-pg-migrate up && node src/index.js"
+    command: sh -c 'export DATABASE_URL=`cat $$DATABASE_URL_FILE` && node-pg-migrate up && node src/index.js'
     ports:
       - "80:3001"
     env_file:
       - .env
     environment:
-      - NODE_ENV=production
-      - DATABASE_URL=postgres://ubuntu:db-password@postgres:5432/app-db
+      NODE_ENV: production
+      DATABASE_URL_FILE: /run/secrets/database_url
+      JWT_KEY_FILE: /run/secrets/jwt_key
+      GITHUB_CLIENT_ID_FILE: /run/secrets/github_client_id
+      GITHUB_CLIENT_SECRET_FILE: /run/secrets/github_client_secret
+      GOOGLE_CLIENT_ID_FILE: /run/secrets/google_client_id
+      GOOGLE_CLIENT_SECRET_FILE: /run/secrets/google_client_secret
+    secrets:
+      - database_url
+      - jwt_key
+      - github_client_id
+      - github_client_secret
+      - google_client_id
+      - google_client_secret
     deploy:
       replicas: 2
       resources:
@@ -25,8 +37,10 @@ services:
   postgres:
     environment:
       POSTGRES_USER: ubuntu
-      POSTGRES_PASSWORD: db-password
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
       POSTGRES_DB: app-db
+    secrets:
+      - db_password
     networks:
       - webnet
 
@@ -41,6 +55,22 @@ services:
         constraints: [node.role == manager]
     networks:
       - webnet
+
+secrets:
+  database_url:
+    file: secret_database_url.txt
+  db_password:
+    file: secret_db_password.txt
+  jwt_key:
+    file: secret_jwt_key.txt
+  github_client_id:
+    file: secret_github_client_id.txt
+  github_client_secret:
+    file: secret_github_client_secret.txt
+  google_client_id:
+    file: secret_google_client_id.txt
+  google_client_secret:
+    file: secret_google_client_secret.txt
 
 networks:
   webnet:

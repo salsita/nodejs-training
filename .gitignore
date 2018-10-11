@@ -61,3 +61,5 @@ typings/
 .idea
 
 /apidoc
+/docker-compose.prod.yml
+/secret_*

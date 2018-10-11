@@ -13,7 +13,7 @@ ARG PORT=3001
 ENV PORT $PORT
 EXPOSE $PORT 9229
 
-HEALTHCHECK CMD curl -fs http://localhost:$PORT/ || exit 1
+HEALTHCHECK --start-period=5s --interval=10s --timeout=5s CMD curl -fs http://localhost:$PORT/ || exit 1
 
 WORKDIR /srv
 COPY package.json package-lock.json .snyk ./

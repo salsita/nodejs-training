@@ -54,8 +54,8 @@ Copy `.env.dev` to `.env` and update settings:
 And run either via
 
 - `npm run start:dev` or `npm start` (you need to have node, postgres and everything installed locally)
-- (`docker-compose -f docker-compose.yml -f docker-compose.development.yml build` when dependencies change)
-  and `docker-compose -f docker-compose.yml -f docker-compose.development.yml up` (you need only docker and there should be no "works on my machine" issue :tada:)
+- (`docker-compose build` when dependencies change) and `docker-compose up` (you need only docker and
+  there should be no "works on my machine" issue :tada:)
 - for running in production use app docker image directly or use [docker swarm](https://docs.docker.com/engine/swarm/) (TODO)
 
 ## Training plan

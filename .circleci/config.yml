@@ -1,7 +1,7 @@
 version: 2
 
 node-image: &node-image
-  image: circleci/node:10.8
+  image: circleci/node:10.11
 
 set-npm-global: &set-npm-global
   run:
@@ -31,7 +31,7 @@ jobs:
     steps:
       - checkout
       - <<: *set-npm-global
-      - run: npm install -g npm@6.3.0
+      - run: npm install -g npm@6.4.1
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - restore_cache:
@@ -87,6 +87,25 @@ jobs:
       - run:
           name: test
           command: npm run migrate up && npm test
+  build:
+    docker:
+      - <<: *node-image
+    steps:
+      - <<: *restore
+      - run:
+          name: prepare-config
+          command: |
+            cat > .env << 'EOF'
+            PORT=3001
+            DOMAIN=localhost:3001
+            ALLOW_UNSECURE=1
+            SSL_KEY_FILE=
+            CERT_SSL_FILE=
+            EOF
+      - run: docker-compose -f docker-compose.yml -f docker-compose.production.yml config > docker-compose.prod.yml
+      - store_artifacts:
+          path: docker-compose.prod.yml
+          destination: docker-compose.prod.yml
 
 
 workflows:
@@ -100,3 +119,7 @@ workflows:
       - test:
           requires:
             - install
+      - build:
+          requires:
+            - lint
+            - test

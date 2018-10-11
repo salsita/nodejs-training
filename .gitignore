@@ -62,3 +62,4 @@ typings/
 
 /apidoc
 /docker-compose.prod.yml
+/secret_*

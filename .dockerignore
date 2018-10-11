@@ -7,3 +7,4 @@ node_modules
 apidoc
 client-auth
 !client-auth/build
+secret_*

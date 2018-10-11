@@ -40,23 +40,33 @@ Copy `.env.dev` to `.env` and update settings:
 - `ALLOW_UNSECURE` - do not try to redirect http to https
 - `PORT` - port where API will be running
 - `DOMAIN` - url where API will be running
+- `DATABASE_URL` - connection string to postgres DB
+
+Create files
+
+- `secret_jwt_key.txt` - random secure key for signing session payload
+- `secret_github_client_id.txt`, `secret_github_client_secret.txt`, `secret_google_client_id.txt`,
+  `secret_google_client_secret.txt` with OAuth credentials from [apps you created](#deploymentrunning)
+
+Optionally you can update .env file with SSL settings (but running LB or proxy is recommended):
+
 - `SSL_KEY_FILE` - path to SSL key file
 - `SSL_KEY` - SSL key file contents
 - `CERT_SSL_FILE` - path to SSL cert file
 - `CERT_SSL` - SSL cert file contents
-- `DATABASE_URL` - connection string to postgres DB
-- `JWT_KEY` - random secure key for signing session payload
-- `GITHUB_CLIENT_ID` - from OAuth app you created
-- `GITHUB_CLIENT_SECRET` - from OAuth app you created
-- `GOOGLE_CLIENT_ID` - from OAuth app you created
-- `GOOGLE_CLIENT_SECRET` - from OAuth app you created
 
 And run either via
 
 - `npm run start:dev` or `npm start` (you need to have node, postgres and everything installed locally)
 - (`docker-compose build` when dependencies change) and `docker-compose up` (you need only docker and
   there should be no "works on my machine" issue :tada:)
-- for running in production use app docker image directly or use [docker swarm](https://docs.docker.com/engine/swarm/) (TODO)
+- for running in production use app docker image directly or use [docker swarm](https://docs.docker.com/engine/swarm/)
+  - change image in docker-compose.production.yml
+  - run `docker-compose -f docker-compose.yml -f docker-compose.production.yml config > docker-compose.prod.yml` to
+    squash config files together (check `docker-compose.prod.yml` secrets section - there should be relative paths)
+  - create files `secret_database_url.txt` and `secret_db_password.txt` with DB connection url/password
+  - create swarm cluster and deploy (see [Brownbag presentation](https://docs.google.com/presentation/d/1szeWrDIFZmzHSecqQrYbdADOgMVCepiWE9k3Y7avknI/edit?usp=sharing))
+  - enjoy :)
 
 ## Training plan
 

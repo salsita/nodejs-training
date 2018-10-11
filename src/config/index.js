@@ -10,8 +10,8 @@ const getEnvValue = val => {
   }
 
   const file = `${val}_FILE`;
-  if (file in process.env) {
-    return readFileSync(process.env[val], "utf8");
+  if (file in process.env && process.env[file]) {
+    return readFileSync(process.env[file], "utf8");
   }
 
   return undefined;
@@ -38,8 +38,8 @@ const test = {
   }
 };
 
-const sslKey = getEnvValue("GOOGLE_CLIENT_SECRET");
-const sslCert = getEnvValue("GOOGLE_CLIENT_SECRET");
+const sslKey = getEnvValue("SSL_KEY");
+const sslCert = getEnvValue("CERT_SSL");
 
 const envConfig = {
   apiBase: "/api",

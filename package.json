@@ -59,7 +59,7 @@
     "dotenv": "6.1.0",
     "http-status": "1.2.0",
     "is-wsl": "1.1.0",
-    "joi": "13.7.0",
+    "joi": "14.0.0",
     "jsonwebtoken": "8.3.0",
     "koa-passport": "4.1.1",
     "koa-router": "7.4.0",

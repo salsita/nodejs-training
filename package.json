@@ -64,7 +64,7 @@
     "koa-passport": "4.1.1",
     "koa-router": "7.4.0",
     "lodash": "4.17.11",
-    "node-pg-migrate": "3.12.0",
+    "node-pg-migrate": "3.13.0",
     "passport-github": "1.1.0",
     "passport-google-oauth": "1.0.0",
     "passport-jwt": "4.0.0",

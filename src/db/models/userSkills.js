@@ -34,32 +34,30 @@ const findSkillsForUser = onlyRows((dbClient, id) =>
   )
 );
 
-const insertForUser = onlyRows(
-  (dbClient, userId, skillIds) =>
-    skillIds.length > 0
-      ? dbClient.query(
-          squel
-            .insert()
-            .into('"UserSkills"')
-            .setFieldsRows(skillIds.map(skillId => quote({ userId, skillId })))
-            .returning("*")
-            .toParam()
-        )
-      : {}
+const insertForUser = onlyRows((dbClient, userId, skillIds) =>
+  skillIds.length > 0
+    ? dbClient.query(
+        squel
+          .insert()
+          .into('"UserSkills"')
+          .setFieldsRows(skillIds.map(skillId => quote({ userId, skillId })))
+          .returning("*")
+          .toParam()
+      )
+    : {}
 );
 
-const removeByIds = onlyRows(
-  (dbClient, ids) =>
-    ids.length > 0
-      ? dbClient.query(
-          squel
-            .remove()
-            .from('"UserSkills"')
-            .where('"userSkillId" IN ?', ids)
-            .returning("*")
-            .toParam()
-        )
-      : {}
+const removeByIds = onlyRows((dbClient, ids) =>
+  ids.length > 0
+    ? dbClient.query(
+        squel
+          .remove()
+          .from('"UserSkills"')
+          .where('"userSkillId" IN ?', ids)
+          .returning("*")
+          .toParam()
+      )
+    : {}
 );
 
 module.exports = {

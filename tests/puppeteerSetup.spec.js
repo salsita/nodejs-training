@@ -6,7 +6,7 @@ const baseUrl = require("../src/helpers/baseUrl");
 let server;
 
 // start api server before tests
-before(async function() {
+before(async function before() {
   this.timeout(10000);
 
   server = spawn("node", ["./src"], {

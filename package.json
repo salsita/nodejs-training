@@ -42,7 +42,7 @@
     "lint-staged": "8.0.4",
     "mocha": "5.2.0",
     "nodemon": "1.18.6",
-    "prettier": "1.15.1",
+    "prettier": "1.15.2",
     "puppeteer": "1.10.0",
     "sinon": "7.1.1",
     "sinon-chai": "3.2.0",

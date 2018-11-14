@@ -5,5 +5,5 @@ ignore:
   'npm:squel:20180322':
     - squel:
         reason: None given
-        expires: '2018-11-14T06:26:24.816Z'
+        expires: '2018-12-14T08:20:02.953Z'
 patch: {}

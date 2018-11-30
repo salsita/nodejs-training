@@ -36,12 +36,6 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
       - restore_cache:
           key: dependency-cache-{{ checksum "client-auth/package.json" }}
-      - run:
-          name: greenkeeper
-          command: |
-            npm install -g greenkeeper-lockfile
-            greenkeeper-lockfile-update
-            greenkeeper-lockfile-upload
       - run: npm i
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}

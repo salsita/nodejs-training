@@ -1,6 +1,6 @@
 # nodejs-training
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/salsita/nodejs-training.svg)](https://greenkeeper.io/)
+[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 [![Dependency Status](https://img.shields.io/david/salsita/nodejs-training.svg)](https://david-dm.org/salsita/nodejs-training)
 [![devDependency Status](https://img.shields.io/david/dev/salsita/nodejs-training.svg)](https://david-dm.org/salsita/nodejs-training?type=dev)
 ![Licence](https://img.shields.io/github/license/salsita/nodejs-training.svg)
@@ -147,7 +147,7 @@ const data = request.get("mydata");
 ### Services:
 
 - [Circle CI](https://circleci.com/docs/2.0/basics/) - CI/test server
-- [Greenkeeper](https://greenkeeper.io/) - Automated dependency management
+- [Renovate](https://renovatebot.com/) - Automated dependency management
 - [Docker](https://docs.docker.com/get-started/) - For united development experience
 - [Heroku](https://devcenter.heroku.com/categories/heroku-architecture) - For deployment and review apps
 - [Snyk](https://snyk.io/docs/using-snyk/) - Find/Protect against vulnerabilities in 3rd party code

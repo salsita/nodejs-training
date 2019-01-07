@@ -5,7 +5,7 @@
   "dependencies": {
     "react": "16.7.0",
     "react-dom": "16.7.0",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.3"
   },
   "scripts": {
     "postinstall": "PUBLIC_URL=/auth npm run build",

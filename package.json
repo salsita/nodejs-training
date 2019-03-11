@@ -66,7 +66,7 @@
     "lodash": "4.17.11",
     "node-pg-migrate": "3.16.1",
     "passport-github": "1.1.0",
-    "passport-google-oauth": "1.0.0",
+    "passport-google-oauth": "2.0.0",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
     "pg": "7.8.1",

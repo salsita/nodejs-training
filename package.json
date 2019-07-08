@@ -39,7 +39,7 @@
     "husky": "2.7.0",
     "koa-send": "5.0.0",
     "koa-static": "5.0.0",
-    "lint-staged": "8.2.1",
+    "lint-staged": "9.1.0",
     "mocha": "6.1.4",
     "nodemon": "1.19.1",
     "prettier": "1.18.2",

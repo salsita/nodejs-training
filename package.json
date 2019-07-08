@@ -31,7 +31,7 @@
     "chai": "4.2.0",
     "cross-env": "5.2.0",
     "eslint": "6.0.1",
-    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-config-airbnb-base": "13.2.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-plugin-import": "2.18.0",
     "eslint-plugin-prettier": "3.1.0",
@@ -71,7 +71,7 @@
     "passport-local": "1.0.0",
     "pg": "7.11.0",
     "pretty-error": "2.1.1",
-    "snyk": "1.185.5",
+    "snyk": "1.192.3",
     "squel": "5.13.0",
     "winston": "3.2.1"
   },
@@ -87,7 +87,7 @@
   },
   "engines": {
     "node": "10.16.0",
-    "npm": "6.9.2"
+    "npm": "6.10.0"
   },
   "snyk": true
 }

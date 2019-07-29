@@ -39,11 +39,11 @@
     "husky": "3.0.1",
     "koa-send": "5.0.0",
     "koa-static": "5.0.0",
-    "lint-staged": "9.2.0",
+    "lint-staged": "9.2.1",
     "mocha": "6.2.0",
     "nodemon": "1.19.1",
     "prettier": "1.18.2",
-    "puppeteer": "1.18.1",
+    "puppeteer": "1.19.0",
     "sinon": "7.3.2",
     "sinon-chai": "3.3.0",
     "supertest": "4.0.2"
@@ -69,9 +69,9 @@
     "passport-google-oauth": "2.0.0",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
-    "pg": "7.11.0",
+    "pg": "7.12.0",
     "pretty-error": "2.1.1",
-    "snyk": "1.195.1",
+    "snyk": "1.200.1",
     "squel": "5.13.0",
     "winston": "3.2.1"
   },
@@ -87,7 +87,7 @@
   },
   "engines": {
     "node": "10.16.0",
-    "npm": "6.10.1"
+    "npm": "6.10.2"
   },
   "snyk": true
 }

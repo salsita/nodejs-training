@@ -36,7 +36,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-prettier": "3.1.0",
     "eslint-plugin-security": "1.4.0",
-    "husky": "3.0.1",
+    "husky": "3.0.2",
     "koa-send": "5.0.0",
     "koa-static": "5.0.0",
     "lint-staged": "9.2.1",
@@ -44,7 +44,7 @@
     "nodemon": "1.19.1",
     "prettier": "1.18.2",
     "puppeteer": "1.19.0",
-    "sinon": "7.3.2",
+    "sinon": "7.4.0",
     "sinon-chai": "3.3.0",
     "supertest": "4.0.2"
   },
@@ -71,7 +71,7 @@
     "passport-local": "1.0.0",
     "pg": "7.12.0",
     "pretty-error": "2.1.1",
-    "snyk": "1.200.1",
+    "snyk": "1.208.0",
     "squel": "5.13.0",
     "winston": "3.2.1"
   },
@@ -86,7 +86,7 @@
     ]
   },
   "engines": {
-    "node": "10.16.0",
+    "node": "10.16.1",
     "npm": "6.10.2"
   },
   "snyk": true

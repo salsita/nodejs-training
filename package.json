@@ -41,7 +41,7 @@
     "koa-static": "5.0.0",
     "lint-staged": "9.4.3",
     "mocha": "6.2.2",
-    "nodemon": "1.19.4",
+    "nodemon": "2.0.1",
     "prettier": "1.19.1",
     "puppeteer": "2.0.0",
     "sinon": "7.5.0",

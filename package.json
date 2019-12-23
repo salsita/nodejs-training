@@ -44,7 +44,7 @@
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
     "puppeteer": "2.0.0",
-    "sinon": "7.5.0",
+    "sinon": "8.0.0",
     "sinon-chai": "3.3.0",
     "supertest": "4.0.2"
   },

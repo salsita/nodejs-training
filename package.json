@@ -27,12 +27,12 @@
     }
   },
   "devDependencies": {
-    "apidoc": "0.19.0",
+    "apidoc": "0.19.1",
     "chai": "4.2.0",
     "cross-env": "6.0.3",
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.0.0",
-    "eslint-config-prettier": "6.7.0",
+    "eslint-config-prettier": "6.9.0",
     "eslint-plugin-import": "2.19.1",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-security": "1.4.0",
@@ -44,8 +44,8 @@
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
     "puppeteer": "2.0.0",
-    "sinon": "8.0.0",
-    "sinon-chai": "3.3.0",
+    "sinon": "8.0.1",
+    "sinon-chai": "3.4.0",
     "supertest": "4.0.2"
   },
   "dependencies": {
@@ -69,9 +69,9 @@
     "passport-google-oauth": "2.0.0",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
-    "pg": "7.15.1",
+    "pg": "7.17.0",
     "pretty-error": "2.1.1",
-    "snyk": "1.265.0",
+    "snyk": "1.267.0",
     "squel": "5.13.0",
     "winston": "3.2.1"
   },

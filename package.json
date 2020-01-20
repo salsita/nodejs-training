@@ -77,12 +77,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run lintfix",
-      "git add"
+      "npm run lintfix"
     ],
     "*.{json,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "engines": {

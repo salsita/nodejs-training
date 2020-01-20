@@ -36,7 +36,7 @@
     "eslint-plugin-import": "2.20.0",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-security": "1.4.0",
-    "husky": "4.0.7",
+    "husky": "4.0.10",
     "koa-send": "5.0.0",
     "koa-static": "5.0.0",
     "lint-staged": "9.5.0",
@@ -44,7 +44,7 @@
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
     "puppeteer": "2.0.0",
-    "sinon": "8.0.4",
+    "sinon": "8.1.0",
     "sinon-chai": "3.4.0",
     "supertest": "4.0.2"
   },

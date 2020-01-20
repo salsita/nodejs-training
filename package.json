@@ -39,7 +39,7 @@
     "husky": "4.0.10",
     "koa-send": "5.0.0",
     "koa-static": "5.0.0",
-    "lint-staged": "9.5.0",
+    "lint-staged": "10.0.0",
     "mocha": "7.0.0",
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
@@ -77,12 +77,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run lintfix",
-      "git add"
+      "npm run lintfix"
     ],
     "*.{json,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "engines": {

@@ -1,5 +1,5 @@
 const HTTPStatus = require("http-status");
-const Router = require("koa-router");
+const Router = require("@koa/router");
 const { NotFoundError } = require("@salsita/errors");
 const errorMiddleware = require("@salsita/koa-error-middleware");
 const config = require("../config");

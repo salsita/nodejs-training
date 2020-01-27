@@ -155,7 +155,7 @@ const data = request.get("mydata");
 ### Dependencies:
 
 - [koa](http://koajs.com/) - server
-- [koa-router](https://www.npmjs.com/package/koa-router) - routing
+- [@koa/router](https://www.npmjs.com/package/@koa/router) - routing
 - [koa-passport](https://www.npmjs.com/package/koa-passport) - authentication via [passport](http://www.passportjs.org/)
 - [koa-bodyparser](https://www.npmjs.com/package/koa-bodyparser) - parse json/form/text request
 - [koa-compress](https://www.npmjs.com/package/koa-compress) - zipping response

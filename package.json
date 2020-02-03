@@ -32,18 +32,18 @@
     "cross-env": "7.0.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.0.0",
-    "eslint-config-prettier": "6.9.0",
-    "eslint-plugin-import": "2.20.0",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.1",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-security": "1.4.0",
     "husky": "4.2.1",
     "koa-send": "5.0.0",
     "koa-static": "5.0.0",
-    "lint-staged": "10.0.2",
+    "lint-staged": "10.0.7",
     "mocha": "7.0.1",
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
-    "puppeteer": "2.0.0",
+    "puppeteer": "2.1.0",
     "sinon": "8.1.1",
     "sinon-chai": "3.4.0",
     "supertest": "4.0.2"
@@ -69,9 +69,9 @@
     "passport-google-oauth": "2.0.0",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
-    "pg": "7.17.1",
+    "pg": "7.18.1",
     "pretty-error": "2.1.1",
-    "snyk": "1.280.1",
+    "snyk": "1.290.1",
     "squel": "5.13.0",
     "winston": "3.2.1"
   },
@@ -85,7 +85,7 @@
   },
   "engines": {
     "node": "10.18.1",
-    "npm": "6.13.6"
+    "npm": "6.13.7"
   },
   "snyk": true
 }

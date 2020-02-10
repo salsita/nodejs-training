@@ -43,13 +43,13 @@
     "mocha": "7.0.1",
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
-    "puppeteer": "2.1.0",
+    "puppeteer": "2.1.1",
     "sinon": "8.1.1",
     "sinon-chai": "3.4.0",
     "supertest": "4.0.2"
   },
   "dependencies": {
-    "@koa/router": "8.0.6",
+    "@koa/router": "8.0.8",
     "@salsita/errors": "1.0.1",
     "@salsita/koa-error-middleware": "1.1.0",
     "@salsita/koa-joi-middleware": "1.0.1",
@@ -71,7 +71,7 @@
     "passport-local": "1.0.0",
     "pg": "7.18.1",
     "pretty-error": "2.1.1",
-    "snyk": "1.290.1",
+    "snyk": "1.290.2",
     "squel": "5.13.0",
     "winston": "3.2.1"
   },
@@ -84,7 +84,7 @@
     ]
   },
   "engines": {
-    "node": "10.18.1",
+    "node": "10.19.0",
     "npm": "6.13.7"
   },
   "snyk": true

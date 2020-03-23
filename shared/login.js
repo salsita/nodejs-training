@@ -28,5 +28,5 @@ module.exports = {
   storageKey: storageKey,
   setToken: setToken,
   clearToken: clearToken,
-  getToken: getToken
+  getToken: getToken,
 };

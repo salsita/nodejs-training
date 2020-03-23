@@ -3,32 +3,19 @@ const onlyFirstRow = require("@salsita/psql/utils/onlyFirstRow");
 const quote = require("@salsita/psql/utils/quote");
 const squel = require("../squel");
 
-const findAll = onlyRows(dbClient =>
-  dbClient.query(
-    squel
-      .select()
-      .from('"Users"')
-      .toParam()
-  )
+const findAll = onlyRows((dbClient) =>
+  dbClient.query(squel.select().from('"Users"').toParam())
 );
 
 const findById = onlyFirstRow((dbClient, id) =>
   dbClient.query(
-    squel
-      .select()
-      .from('"Users"')
-      .where('"userId" = ?', id)
-      .toParam()
+    squel.select().from('"Users"').where('"userId" = ?', id).toParam()
   )
 );
 
 const findByLogin = onlyFirstRow((dbClient, id) =>
   dbClient.query(
-    squel
-      .select()
-      .from('"Users"')
-      .where('"login" = ?', id)
-      .toParam()
+    squel.select().from('"Users"').where('"login" = ?', id).toParam()
   )
 );
 
@@ -76,7 +63,7 @@ const findOrCreateFromProfile = async (
 ) => {
   const identifierColumnName = `${serviceName}Identifier`;
   const {
-    rows: [user]
+    rows: [user],
   } = await dbClient.query(
     squel
       .select()
@@ -88,7 +75,7 @@ const findOrCreateFromProfile = async (
     return user;
   }
   const {
-    rows: [newUser]
+    rows: [newUser],
   } = await dbClient.query(
     squel
       .insert()
@@ -98,7 +85,7 @@ const findOrCreateFromProfile = async (
           [identifierColumnName]: identifier,
           firstName,
           lastName,
-          email
+          email,
         })
       )
       .returning("*")
@@ -114,5 +101,5 @@ module.exports = {
   insert,
   updateById,
   removeById,
-  findOrCreateFromProfile
+  findOrCreateFromProfile,
 };

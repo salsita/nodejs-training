@@ -11,7 +11,7 @@ before(async function before() {
 
   server = spawn("node", ["./src"], {
     detached: true,
-    stdio: "inherit"
+    stdio: "inherit",
   });
 
   // wait for server to start

@@ -70,16 +70,16 @@ const { userSchemaRequired } = require("../../../validations/user");
 module.exports = [
   joiMiddleware([
     {
-      get: ctx => ctx.request.body,
-      schema: userSchemaRequired.forbiddenKeys("id").required()
-    }
+      get: (ctx) => ctx.request.body,
+      schema: userSchemaRequired.forbiddenKeys("id").required(),
+    },
   ]),
 
-  async ctx => {
+  async (ctx) => {
     const { body } = ctx.request;
     const user = userApiToDB(body);
     const skills = body.skills || [];
-    const skillIds = skills.map(skill => skill.skill.id);
+    const skillIds = skills.map((skill) => skill.skill.id);
 
     const { user: createdUser } = await create(user, skillIds);
 
@@ -90,7 +90,7 @@ module.exports = [
     ctx.status = HTTPStatus.CREATED;
     ctx.body = {
       ...userDbToApi(createdUser),
-      skills: createdSkills.map(skill => ({ skill: skillDbToApi(skill) }))
+      skills: createdSkills.map((skill) => ({ skill: skillDbToApi(skill) })),
     };
-  }
+  },
 ];

@@ -9,7 +9,7 @@ passport.use(
   new Strategy(
     {
       usernameField: "username",
-      passwordField: "password"
+      passwordField: "password",
     },
     async (username, password, done) => {
       try {

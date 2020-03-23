@@ -9,11 +9,11 @@ const uniqEmailConstraint = "idx_user_email_uniq";
 
 const create = uniqConstraintCatch(
   {
-    [uniqEmailConstraint]: "User email is not unique"
+    [uniqEmailConstraint]: "User email is not unique",
   },
   (user, skillIds) =>
     connectDB(
-      transaction(async dbClient => {
+      transaction(async (dbClient) => {
         const createdUser = await usersModel.insert(
           dbClient,
           pruneValues(user)
@@ -25,7 +25,7 @@ const create = uniqConstraintCatch(
         );
         return {
           user: createdUser,
-          userSkills: createdUserSkills
+          userSkills: createdUserSkills,
         };
       })
     )
@@ -42,22 +42,22 @@ const updateUserSkills = async (dbClient, id, newSkillIds) => {
     .filter(({ skillId }) => !newSkillIds.includes(skillId))
     .map(({ userSkillId }) => userSkillId);
   const toInsert = newSkillIds.filter(
-    skillId => !oldSkillIds.includes(skillId)
+    (skillId) => !oldSkillIds.includes(skillId)
   );
 
   return Promise.all([
     userSkillsModel.removeByIds(dbClient, toDelete),
-    userSkillsModel.insertForUser(dbClient, id, toInsert)
+    userSkillsModel.insertForUser(dbClient, id, toInsert),
   ]);
 };
 
 const patch = uniqConstraintCatch(
   {
-    [uniqEmailConstraint]: "User email is not unique"
+    [uniqEmailConstraint]: "User email is not unique",
   },
   (id, user, skillIds) =>
     connectDB(
-      transaction(async dbClient => {
+      transaction(async (dbClient) => {
         const valuesToUpdate = pruneValues(user);
         const updatedUser = _.isEmpty(valuesToUpdate)
           ? await usersModel.findById(dbClient, id)
@@ -72,7 +72,7 @@ const patch = uniqConstraintCatch(
         );
         return {
           user: updatedUser,
-          userSkills: updatedUserSkills
+          userSkills: updatedUserSkills,
         };
       })
     )
@@ -80,5 +80,5 @@ const patch = uniqConstraintCatch(
 
 module.exports = {
   create,
-  patch
+  patch,
 };

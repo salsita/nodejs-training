@@ -4,7 +4,7 @@ const toBoolean = require("../helpers/toBoolean");
 
 dotenv.config({ silent: true });
 
-const getEnvValue = val => {
+const getEnvValue = (val) => {
   if (val in process.env) {
     return process.env[val];
   }
@@ -20,22 +20,22 @@ const getEnvValue = val => {
 const development = {
   log: {
     level: "debug",
-    colorize: true
-  }
+    colorize: true,
+  },
 };
 
 const production = {
   log: {
     level: "info",
-    colorize: false
-  }
+    colorize: false,
+  },
 };
 
 const test = {
   log: {
     level: "warn",
-    colorize: true
-  }
+    colorize: true,
+  },
 };
 
 const sslKey = getEnvValue("SSL_KEY");
@@ -48,25 +48,25 @@ const envConfig = {
   allowUnsecure: toBoolean(getEnvValue("ALLOW_UNSECURE"), false),
   db: {
     connectionString: getEnvValue("DATABASE_URL"),
-    max: parseInt(getEnvValue("POOL_SIZE"), 10) || 20 // limit for free Postgres plan on Heroku
+    max: parseInt(getEnvValue("POOL_SIZE"), 10) || 20, // limit for free Postgres plan on Heroku
   },
   auth: {
     jwtKey: getEnvValue("JWT_KEY"),
     github: {
       clientID: getEnvValue("GITHUB_CLIENT_ID"),
-      clientSecret: getEnvValue("GITHUB_CLIENT_SECRET")
+      clientSecret: getEnvValue("GITHUB_CLIENT_SECRET"),
     },
     google: {
       clientID: getEnvValue("GOOGLE_CLIENT_ID"),
-      clientSecret: getEnvValue("GOOGLE_CLIENT_SECRET")
-    }
+      clientSecret: getEnvValue("GOOGLE_CLIENT_SECRET"),
+    },
   },
   ssl: (sslKey || sslCert) && { key: sslKey, cert: sslCert },
   ...({
     development,
     production,
-    test
-  }[process.env.NODE_ENV] || development)
+    test,
+  }[process.env.NODE_ENV] || development),
 };
 
 const required = [
@@ -80,7 +80,7 @@ const required = [
   "auth.google.clientID",
   "auth.google.clientSecret",
   "log.level",
-  "log.colorize"
+  "log.colorize",
 ];
 
 const check = (conf, keyArray) => {
@@ -100,7 +100,7 @@ const missing = required.reduce((acc, longKey) => {
 }, []);
 
 if (process.env.CI) {
-  missing.forEach(longKey => {
+  missing.forEach((longKey) => {
     const keyArray = longKey.split(".").reverse();
     let conf = envConfig;
     while (keyArray.length) {

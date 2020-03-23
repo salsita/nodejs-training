@@ -8,7 +8,7 @@ passport.use(
   new Strategy(
     {
       ...auth.github,
-      callbackURL: getCallbackUrl("github")
+      callbackURL: getCallbackUrl("github"),
     },
     async (accessToken, refreshToken, profile, done) => {
       const email = profile.emails && profile.emails[0];

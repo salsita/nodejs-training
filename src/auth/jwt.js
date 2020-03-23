@@ -6,6 +6,6 @@ const { usersModel } = require("../db");
 module.exports = create({
   key: auth.jwtKey,
   version: 1,
-  createSession: user => user.userId,
-  getUserForSession: usersModel.findById
+  createSession: (user) => user.userId,
+  getUserForSession: usersModel.findById,
 });

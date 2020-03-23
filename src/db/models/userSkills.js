@@ -2,13 +2,8 @@ const onlyRows = require("@salsita/psql/utils/onlyRows");
 const quote = require("@salsita/psql/utils/quote");
 const squel = require("../squel");
 
-const findAll = onlyRows(dbClient =>
-  dbClient.query(
-    squel
-      .select()
-      .from('"UserSkills"')
-      .toParam()
-  )
+const findAll = onlyRows((dbClient) =>
+  dbClient.query(squel.select().from('"UserSkills"').toParam())
 );
 
 const findSkillMappingsForUser = onlyRows((dbClient, id) =>
@@ -40,7 +35,7 @@ const insertForUser = onlyRows((dbClient, userId, skillIds) =>
         squel
           .insert()
           .into('"UserSkills"')
-          .setFieldsRows(skillIds.map(skillId => quote({ userId, skillId })))
+          .setFieldsRows(skillIds.map((skillId) => quote({ userId, skillId })))
           .returning("*")
           .toParam()
       )
@@ -65,5 +60,5 @@ module.exports = {
   findSkillMappingsForUser,
   findSkillsForUser,
   insertForUser,
-  removeByIds
+  removeByIds,
 };

@@ -11,8 +11,8 @@ const HASH_CONFIGS = {
     saltBytes: 32,
     iterations: 100000,
     keylen: 512,
-    digest: "sha512"
-  }
+    digest: "sha512",
+  },
 };
 
 const makeSalt = (version = CURRENT_HASH_CONFIG) => {
@@ -35,5 +35,5 @@ module.exports = {
   HASH_CONFIG_V1,
   CURRENT_HASH_CONFIG,
   makeSalt,
-  encryptPassword
+  encryptPassword,
 };

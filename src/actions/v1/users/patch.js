@@ -60,25 +60,25 @@ const { userSchema, userId } = require("../../../validations/user");
 module.exports = [
   joiMiddleware([
     {
-      get: ctx => ctx.params,
+      get: (ctx) => ctx.params,
       schema: joi.object().keys({
-        id: userId.required()
-      })
+        id: userId.required(),
+      }),
     },
     {
-      get: ctx => ctx.request.body,
-      schema: userSchema.forbiddenKeys("id").required()
-    }
+      get: (ctx) => ctx.request.body,
+      schema: userSchema.forbiddenKeys("id").required(),
+    },
   ]),
 
-  async ctx => {
+  async (ctx) => {
     const {
       params: { id },
-      request: { body }
+      request: { body },
     } = ctx;
 
     const user = userApiToDB(body);
-    const skillIds = body.skills && body.skills.map(skill => skill.skill.id);
+    const skillIds = body.skills && body.skills.map((skill) => skill.skill.id);
 
     const { user: updatedUser } = await patch(id, user, skillIds);
 
@@ -86,7 +86,7 @@ module.exports = [
 
     ctx.body = {
       ...userDbToApi(updatedUser),
-      skills: updatedSkills.map(skill => ({ skill: skillDbToApi(skill) }))
+      skills: updatedSkills.map((skill) => ({ skill: skillDbToApi(skill) })),
     };
-  }
+  },
 ];

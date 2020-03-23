@@ -7,6 +7,6 @@ const createUser = () => {
   return usersModel.insert({ firstName, lastName, email });
 };
 
-const removeUser = user => usersModel.removeById(user.userId);
+const removeUser = (user) => usersModel.removeById(user.userId);
 
 module.exports = { createUser, removeUser };

@@ -15,15 +15,17 @@ const logger = winston.createLogger({
       winston.format.printf(({ timestamp, level, message }) => {
         const requestId = getRequestId() || "not in request";
         return `${timestamp} - ${level} (rid:${requestId}): ${message}`;
-      })
+      }),
     ].filter(Boolean)
   ),
-  transports: [new winston.transports.Console()]
+  transports: [new winston.transports.Console()],
 });
 
 module.exports = (level, ...message) => {
   logger.log({
     level,
-    message: util.format(...message.map(m => (m instanceof Error ? pe(m) : m)))
+    message: util.format(
+      ...message.map((m) => (m instanceof Error ? pe(m) : m))
+    ),
   });
 };

@@ -1,17 +1,17 @@
-exports.up = pgm => {
+exports.up = (pgm) => {
   pgm.createTable("Skills", {
     skillId: { type: "serial", primaryKey: true },
-    skill: { type: "varchar(1024)", notNull: true }
+    skill: { type: "varchar(1024)", notNull: true },
   });
   pgm.createTable("Users", {
     userId: { type: "serial", primaryKey: true },
     firstName: { type: "varchar(1024)", notNull: true },
     lastName: { type: "varchar(1024)", notNull: true },
-    email: { type: "varchar(1024)", notNull: true }
+    email: { type: "varchar(1024)", notNull: true },
   });
   pgm.createIndex("Users", "lower(email)", {
     unique: true,
-    name: "idx_user_email_uniq"
+    name: "idx_user_email_uniq",
   });
 
   pgm.createTable(
@@ -22,19 +22,19 @@ exports.up = pgm => {
         type: "integer",
         notNull: true,
         references: '"Skills"',
-        onDelete: "cascade"
+        onDelete: "cascade",
       },
       userId: {
         type: "integer",
         notNull: true,
         references: '"Users"',
-        onDelete: "cascade"
-      }
+        onDelete: "cascade",
+      },
     },
     {
       constraints: {
-        unique: ["skillId", "userId"]
-      }
+        unique: ["skillId", "userId"],
+      },
     }
   );
 

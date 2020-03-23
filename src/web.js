@@ -8,7 +8,7 @@ const { ssl, allowUnsecure } = config;
 const web = createWeb({
   log,
   ssl,
-  allowUnsecure
+  allowUnsecure,
 });
 
 module.exports = { app, ...web };

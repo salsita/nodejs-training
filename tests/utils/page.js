@@ -13,7 +13,7 @@ const browserParams = {
   executablePath: isWsl
     ? "/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe"
     : undefined,
-  headless: true // switching to false is slower, but better for debugging
+  headless: true, // switching to false is slower, but better for debugging
 };
 
 class CustomPage {
@@ -22,7 +22,7 @@ class CustomPage {
     const page = await browser.newPage();
     const customPage = new CustomPage(page);
 
-    page.on("console", async message => {
+    page.on("console", async (message) => {
       // eslint-disable-next-line no-console
       const type = console[message.type()];
       type.call(console, "[Browser]", message.text());
@@ -40,7 +40,7 @@ class CustomPage {
           }
         }
         return undefined;
-      }
+      },
     });
   }
 
@@ -50,14 +50,14 @@ class CustomPage {
   }
 
   getContentsOf(selector) {
-    return this.page.$eval(selector, el => el.innerHTML);
+    return this.page.$eval(selector, (el) => el.innerHTML);
   }
 
   async login() {
     const user = await createUser();
     const token = await createSessionToken(user);
 
-    await this.page.evaluate(storeAuthTokenCode => {
+    await this.page.evaluate((storeAuthTokenCode) => {
       // eslint-disable-next-line no-eval,security/detect-eval-with-expression
       eval(storeAuthTokenCode);
     }, createStoreAuthTokenCode(token));
@@ -85,10 +85,10 @@ class CustomPage {
           method: _method,
           headers: {
             "Content-Type": "application/json",
-            Authorization: _token ? `Bearer ${_token}` : undefined
+            Authorization: _token ? `Bearer ${_token}` : undefined,
           },
-          body: _data ? JSON.stringify(_data) : undefined
-        }).then(res => res.json()),
+          body: _data ? JSON.stringify(_data) : undefined,
+        }).then((res) => res.json()),
       method,
       path,
       data,

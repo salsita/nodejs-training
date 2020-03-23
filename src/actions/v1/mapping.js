@@ -1,25 +1,25 @@
 module.exports = {
-  skillDbToApi: doc => ({
+  skillDbToApi: (doc) => ({
     id: doc.skillId,
-    skill: doc.skill
+    skill: doc.skill,
   }),
 
-  skillApiToDB: doc => ({
+  skillApiToDB: (doc) => ({
     skillId: doc.id,
-    skill: doc.skill
+    skill: doc.skill,
   }),
 
-  userDbToApi: doc => ({
+  userDbToApi: (doc) => ({
     id: doc.userId,
     firstName: doc.firstName,
     lastName: doc.lastName,
-    email: doc.email
+    email: doc.email,
   }),
 
-  userApiToDB: doc => ({
+  userApiToDB: (doc) => ({
     userId: doc.id,
     firstName: doc.firstName,
     lastName: doc.lastName,
-    email: doc.email
-  })
+    email: doc.email,
+  }),
 };

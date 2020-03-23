@@ -20,10 +20,8 @@ describe("/api/v1/skills", () => {
       .expect(200);
 
     expect(skills).to.be.an("array").that.is.not.empty;
-    skills.forEach(skill =>
-      expect(skill)
-        .to.be.an("object")
-        .with.keys("id", "skill")
+    skills.forEach((skill) =>
+      expect(skill).to.be.an("object").with.keys("id", "skill")
     );
   });
 });

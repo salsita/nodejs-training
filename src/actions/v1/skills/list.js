@@ -33,7 +33,7 @@ const { skillsModel } = require("../../../db");
  *     ]
  */
 module.exports = [
-  async ctx => {
+  async (ctx) => {
     ctx.body = (await skillsModel.findAll()).map(skillDbToApi);
-  }
+  },
 ];

@@ -19,5 +19,5 @@ module.exports = {
 
   skillsModel: _.mapValues(skills, withDb),
   usersModel: _.mapValues(users, withDb),
-  userSkillsModel: _.mapValues(userSkills, withDb)
+  userSkillsModel: _.mapValues(userSkills, withDb),
 };

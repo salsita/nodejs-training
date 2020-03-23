@@ -10,10 +10,10 @@ const v1 = require("./v1");
 
 const { apiBase } = config;
 const apiRouter = new Router({
-  prefix: apiBase
+  prefix: apiBase,
 });
 
-const formatUserMessage = err =>
+const formatUserMessage = (err) =>
   process.env.NODE_ENV === "production"
     ? err.message || "Ooops something went wrong"
     : pe(err, false, false);
@@ -35,13 +35,13 @@ const serve = require("koa-static")(distDir);
 const send = require("koa-send");
 
 const authRouter = new Router({
-  prefix: authPrefix
+  prefix: authPrefix,
 });
 authRouter.use(async (ctx, next) => {
   ctx.path = ctx.path.replace(authPrefix, "") || "/";
   await serve(ctx, next);
 });
-authRouter.use("(.*)", ctx => send(ctx, `${distDir}/index.html`));
+authRouter.use("(.*)", (ctx) => send(ctx, `${distDir}/index.html`));
 authRouter.all("(.*)", () => {});
 
 const router = new Router();

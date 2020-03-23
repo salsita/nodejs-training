@@ -5,16 +5,16 @@ const { apiBase } = require("../../../config");
 const baseUrl = require("../../../helpers/baseUrl");
 const createStoreAuthTokenCode = require("../../../helpers/createStoreAuthTokenCode");
 
-const getCallbackUrl = serviceName =>
+const getCallbackUrl = (serviceName) =>
   `${baseUrl}${apiBase}/v1/auth/${serviceName}/callback`;
 
 const authConfig = {
   failureRedirect: "/auth/login",
-  session: false
+  session: false,
 };
 
 // also see http://nmajor.com/posts/access-and-refresh-token-handling-with-redux
-const successResponse = async ctx => {
+const successResponse = async (ctx) => {
   const sessionToken = await createSessionToken(ctx.state.user);
   ctx.body = `
 <html>
@@ -32,7 +32,7 @@ const createRouter = (serviceName, scope) => {
   router.get(
     "/",
     passport.authenticate(serviceName, {
-      scope
+      scope,
     })
   );
   router.get(
@@ -48,5 +48,5 @@ module.exports = {
   createRouter,
   getCallbackUrl,
   authConfig,
-  successResponse
+  successResponse,
 };

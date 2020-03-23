@@ -43,14 +43,14 @@ const { userId } = require("../../../validations/user");
 module.exports = [
   joiMiddleware([
     {
-      get: ctx => ctx.params,
+      get: (ctx) => ctx.params,
       schema: joi.object().keys({
-        id: userId.required()
-      })
-    }
+        id: userId.required(),
+      }),
+    },
   ]),
 
-  async ctx => {
+  async (ctx) => {
     const { id } = ctx.params;
     const user = await usersModel.findById(id);
     if (!user) {
@@ -60,7 +60,7 @@ module.exports = [
 
     ctx.body = {
       ...userDbToApi(user),
-      skills: skills.map(skill => ({ skill: skillDbToApi(skill) }))
+      skills: skills.map((skill) => ({ skill: skillDbToApi(skill) })),
     };
-  }
+  },
 ];

@@ -25,16 +25,11 @@ describe("/api/v1/users", () => {
       firstName: "John",
       lastName: "Doe",
       email: "john@doe.com",
-      skills: [{ skill: skills[1] }]
+      skills: [{ skill: skills[1] }],
     };
 
-    await connectDB(dbClient =>
-      dbClient.query(
-        squel
-          .remove()
-          .from('"Users"')
-          .toParam()
-      )
+    await connectDB((dbClient) =>
+      dbClient.query(squel.remove().from('"Users"').toParam())
     );
   });
 
@@ -58,7 +53,7 @@ describe("/api/v1/users", () => {
       .expect(200);
 
     expect(users).to.be.an("array").that.is.not.empty;
-    users.forEach(u =>
+    users.forEach((u) =>
       expect(u)
         .to.be.an("object")
         .with.keys("id", "firstName", "lastName", "email", "skills")
@@ -84,7 +79,7 @@ describe("/api/v1/users", () => {
       .patch(`/api/v1/users/${newUserId}`)
       .send({
         firstName: newFirstName,
-        skills: newSkills
+        skills: newSkills,
       })
       .set("Accept", "application/json")
       .expect(200);

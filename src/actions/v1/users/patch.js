@@ -67,7 +67,9 @@ module.exports = [
     },
     {
       get: (ctx) => ctx.request.body,
-      schema: userSchema.forbiddenKeys("id").required(),
+      schema: userSchema
+        .fork(["id"], (schema) => schema.forbidden())
+        .required(),
     },
   ]),
 

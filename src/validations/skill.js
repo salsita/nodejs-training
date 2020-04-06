@@ -8,7 +8,9 @@ const skillSchema = joi.object().keys({
   skill,
 });
 
-const skillSchemaRequired = skillSchema.requiredKeys("skill");
+const skillSchemaRequired = skillSchema.fork(["skill"], (schema) =>
+  schema.required()
+);
 
 module.exports = {
   skillId,

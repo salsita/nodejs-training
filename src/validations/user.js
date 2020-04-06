@@ -15,10 +15,9 @@ const userSchema = joi.object().keys({
   skills,
 });
 
-const userSchemaRequired = userSchema.requiredKeys(
-  "firstName",
-  "lastName",
-  "email"
+const userSchemaRequired = userSchema.fork(
+  ["firstName", "lastName", "email"],
+  (schema) => schema.required()
 );
 
 module.exports = {

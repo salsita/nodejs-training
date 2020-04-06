@@ -1,4 +1,4 @@
-const joi = require("joi");
+const joi = require("@hapi/joi");
 const { skillSchema } = require("./skill");
 
 const userId = joi.number().integer().positive();

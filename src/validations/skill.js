@@ -1,4 +1,4 @@
-const joi = require("joi");
+const joi = require("@hapi/joi");
 
 const skillId = joi.number().integer().positive();
 const skill = joi.string().max(1024);

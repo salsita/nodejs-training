@@ -71,7 +71,9 @@ module.exports = [
   joiMiddleware([
     {
       get: (ctx) => ctx.request.body,
-      schema: userSchemaRequired.forbiddenKeys("id").required(),
+      schema: userSchemaRequired
+        .fork(["id"], (schema) => schema.forbidden())
+        .required(),
     },
   ]),
 

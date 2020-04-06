@@ -1,4 +1,4 @@
-const joi = require("joi");
+const joi = require("@hapi/joi");
 const HTTPStatus = require("http-status");
 const joiMiddleware = require("@salsita/koa-joi-middleware");
 const { NotFoundError } = require("@salsita/errors");

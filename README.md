@@ -119,7 +119,7 @@ you should keep this request id for better logging. e.g.
 const axios = require("axios");
 const { getRequestId } = require("@salsita/koa-server");
 axios.get("http://example.com", {
-  headers: { "x-request-id": getRequestId() }
+  headers: { "x-request-id": getRequestId() },
 });
 ```
 
@@ -164,7 +164,7 @@ const data = request.get("mydata");
 - [koa-morgan](https://www.npmjs.com/package/koa-morgan) - HTTP(s) request logger (also see [koa-logger](https://www.npmjs.com/package/koa-logger) and [koa-json](https://www.npmjs.com/package/koa-json))
 - [koa-send](https://www.npmjs.com/package/koa-send) - serving static files
 - [koa-static](https://www.npmjs.com/package/koa-static) - serving static directories
-- [joi](https://www.npmjs.com/package/joi) - validation
+- [joi](https://www.npmjs.com/package/@hapi/joi) - validation
 - [pg](https://node-postgres.com/) - DB
 - [node-pg-migrate](https://www.npmjs.com/package/node-pg-migrate) - DB migrations
 - [squel](https://hiddentao.com/squel/) - SQL building (also see [knex](http://knexjs.org/) and [sequelize](http://docs.sequelizejs.com/))

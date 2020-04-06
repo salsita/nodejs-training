@@ -1,4 +1,4 @@
-const joi = require("joi");
+const joi = require("@hapi/joi");
 const joiMiddleware = require("@salsita/koa-joi-middleware");
 const { userApiToDB, userDbToApi, skillDbToApi } = require("../mapping");
 const { patch } = require("../../../services/users");
@@ -67,7 +67,9 @@ module.exports = [
     },
     {
       get: (ctx) => ctx.request.body,
-      schema: userSchema.forbiddenKeys("id").required(),
+      schema: userSchema
+        .fork(["id"], (schema) => schema.forbidden())
+        .required(),
     },
   ]),
 

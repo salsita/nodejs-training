@@ -19,7 +19,7 @@
     "migrate": "node-pg-migrate",
     "snyk": "snyk",
     "apidoc": "apidoc -f \".*\\.js$\" -i src/actions/ -o apidoc/",
-    "heroku-postbuild": "npm run migrate up --no-reject-unauthorized"
+    "heroku-postbuild": "npm run migrate up -- --no-reject-unauthorized"
   },
   "husky": {
     "hooks": {

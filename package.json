@@ -19,7 +19,7 @@
     "migrate": "node-pg-migrate",
     "snyk": "snyk",
     "apidoc": "apidoc -f \".*\\.js$\" -i src/actions/ -o apidoc/",
-    "heroku-postbuild": "npm run migrate up"
+    "heroku-postbuild": "npm run migrate up --no-reject-unauthorized"
   },
   "husky": {
     "hooks": {
@@ -42,13 +42,14 @@
     "lint-staged": "10.1.2",
     "mocha": "7.1.1",
     "nodemon": "2.0.2",
-    "prettier": "2.0.3",
+    "prettier": "2.0.4",
     "puppeteer": "2.1.1",
     "sinon": "9.0.1",
     "sinon-chai": "3.5.0",
     "supertest": "4.0.2"
   },
   "dependencies": {
+    "@hapi/joi": "17.1.1",
     "@koa/router": "8.0.8",
     "@salsita/errors": "1.0.2",
     "@salsita/koa-error-middleware": "1.1.1",
@@ -60,11 +61,10 @@
     "dotenv": "8.2.0",
     "http-status": "1.4.2",
     "is-wsl": "2.1.1",
-    "@hapi/joi": "17.1.1",
     "jsonwebtoken": "8.5.1",
     "koa-passport": "4.1.3",
     "lodash": "4.17.15",
-    "node-pg-migrate": "4.5.1",
+    "node-pg-migrate": "4.6.0",
     "passport-github": "1.1.0",
     "passport-google-oauth": "2.0.0",
     "passport-jwt": "4.0.0",

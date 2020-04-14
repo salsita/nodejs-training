@@ -5,5 +5,8 @@
     ":automergeLinters",
     "schedule:weekly",
     "group:allNonMajor"
-  ]
+  ],
+  "postUpgradeTasks": {
+    "commands": ["npm run lintfix"]
+  }
 }

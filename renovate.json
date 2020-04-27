@@ -7,6 +7,6 @@
     "group:allNonMajor"
   ],
   "postUpgradeTasks": {
-    "commands": ["npm run lintfix"]
+    "commands": ["npm run lintfix", "npm run build:client"]
   }
 }

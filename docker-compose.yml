@@ -9,7 +9,7 @@ services:
       - postgres
 
   postgres:
-    image: postgres:10.12-alpine
+    image: postgres:10.13-alpine
     volumes:
       - psql-data:/var/lib/postgresql/data/
 

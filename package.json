@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "npm run snyk protect",
+    "postinstall": "npm run build:client && npm run snyk protect",
     "build:client": "npm install --prefix client-auth",
     "postoutdated": "npm outdated --prefix client-auth",
     "start": "node ./src",

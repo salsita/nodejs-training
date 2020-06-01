@@ -1,7 +1,7 @@
 version: 2
 
 node-image: &node-image
-  image: circleci/node:10.11
+  image: circleci/node:12.17.0
 
 set-npm-global: &set-npm-global
   run:
@@ -31,12 +31,12 @@ jobs:
     steps:
       - checkout
       - <<: *set-npm-global
-      - run: npm install -g npm@6.4.1
+      - run: npm install -g npm@$(jq -r '.engines.npm' package.json)
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - restore_cache:
           key: dependency-cache-{{ checksum "client-auth/package.json" }}
-      - run: npm i
+      - run: npm ci
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:

@@ -151,6 +151,7 @@ const data = request.get("mydata");
 - [Docker](https://docs.docker.com/get-started/) - For united development experience
 - [Heroku](https://devcenter.heroku.com/categories/heroku-architecture) - For deployment and review apps
 - [Snyk](https://snyk.io/docs/using-snyk/) - Find/Protect against vulnerabilities in 3rd party code
+- [ngrok](https://www.npmjs.com/package/ngrok) - Public URL for your localhost (https://ngrok.com/)
 
 ### Dependencies:
 
@@ -164,7 +165,7 @@ const data = request.get("mydata");
 - [koa-morgan](https://www.npmjs.com/package/koa-morgan) - HTTP(s) request logger (also see [koa-logger](https://www.npmjs.com/package/koa-logger) and [koa-json](https://www.npmjs.com/package/koa-json))
 - [koa-send](https://www.npmjs.com/package/koa-send) - serving static files
 - [koa-static](https://www.npmjs.com/package/koa-static) - serving static directories
-- [joi](https://www.npmjs.com/package/@hapi/joi) - validation
+- [joi](https://www.npmjs.com/package/@hapi/joi) - validation (e.g. [io-ts](https://gcanti.github.io/io-ts/) is better suited for TypeScript projects)
 - [pg](https://node-postgres.com/) - DB
 - [node-pg-migrate](https://www.npmjs.com/package/node-pg-migrate) - DB migrations
 - [squel](https://hiddentao.com/squel/) - SQL building (also see [knex](http://knexjs.org/) and [sequelize](http://docs.sequelizejs.com/))
@@ -190,11 +191,11 @@ const data = request.get("mydata");
 
 ### Others:
 
-- [luxon](https://moment.github.io/luxon/) - date and time
+- [luxon](https://moment.github.io/luxon/) or [date-fns](https://date-fns.org/) - date and time
 - [node-schedule](https://www.npmjs.com/package/node-schedule) - task scheduling
 - [socket.io](https://socket.io/) - WebSockets
 - [mongoose](http://mongoosejs.com/) - MongoDB object modeling
-- [redis](https://www.npmjs.com/package/redis) - Redis client
+- [ioredis](https://www.npmjs.com/package/ioredis) - Redis client
 - [apollo-server-koa](https://www.apollographql.com/docs/apollo-server/) - GraphQL server
 - [webpack](https://webpack.js.org/) - module bundler (also see [rollbar](https://rollbar.com/docs/notifier/rollbar.js/) and [parcel-bundler](https://parceljs.org/))
 - [babel](https://babeljs.io/) - JS transpiler

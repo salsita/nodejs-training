@@ -7,16 +7,19 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/salsita/nodejs-training/badge.svg)](https://snyk.io/test/github/salsita/nodejs-training)
 [![CircleCI](https://img.shields.io/circleci/project/github/salsita/nodejs-training.svg)](https://circleci.com/gh/salsita/workflows/nodejs-training)
 
-Backend part for our frontend (react/angular) trainings
+Backend part for our frontend (react/angular) training
 
 - [REST API docs](http://salsita.github.io/nodejs-training/apidoc/) (generated with [http://apidocjs.com/](apidoc))
 - See [nodejs-modules](https://github.com/salsita/nodejs-modules) for common packages.
 
 ## Deployment/Running:
 
-Create new OAuth App at Github ( https://github.com/settings/developers )
-and Google ( https://console.developers.google.com/apis/dashboard ) and use client id
-and secret to configure nodejs app.
+Create a new OAuth App at Github ( https://github.com/settings/developers )
+and Google ( https://console.developers.google.com/apis/dashboard ) and use the client id
+and the secret to configure the nodejs app.
+
+For local development it is better to use [nvm](https://github.com/nvm-sh/nvm) or [nvm-windows](https://github.com/coreybutler/nvm-windows)
+for managing installed (and used) local node versions (instead of installing Node manually).
 
 ### Heroku
 
@@ -38,9 +41,9 @@ heroku config:set GOOGLE_CLIENT_SECRET=<insert>
 Copy `.env.dev` to `.env` and update settings:
 
 - `ALLOW_UNSECURE` - do not try to redirect http to https
-- `PORT` - port where API will be running
-- `DOMAIN` - url where API will be running
-- `DATABASE_URL` - connection string to postgres DB
+- `PORT` - the port where API will be running
+- `DOMAIN` - URL where API will be running
+- `DATABASE_URL` - connection string to Postgres DB
 
 Create files
 
@@ -57,7 +60,7 @@ Optionally you can update .env file with SSL settings (but running LB or proxy i
 
 And run either via
 
-- `npm run start:dev` or `npm start` (you need to have node, postgres and everything installed locally)
+- `npm run start:dev` or `npm start` (you need to have node, Postgres and everything installed locally)
 - (`docker-compose build` when dependencies change) and `docker-compose up` (you need only docker and
   there should be no "works on my machine" issue :tada:)
 - for running in production use app docker image directly or use [docker swarm](https://docs.docker.com/engine/swarm/)
@@ -71,14 +74,14 @@ And run either via
 ## Training plan
 
 **There is no nodejs way (like there is an Angular way or React way etc.). Just pick framework (we like `Koa`)
-and it comes with a function signature for writing middleware function (all frameworks have similar structure -
-request in, response out). All other depends on type of project, used technologies (REST/SOAP/GraphQL,
+and it comes with a function signature for writing middleware function (all frameworks have a similar structure -
+request in, response out). All other depends on the type of project, used technologies (REST/SOAP/GraphQL,
 Postgres/Mongo/Redis/ElasticSearch/Kafka/...) and on you. Here I present some patterns you may find useful.**
 
 Try to stick with [The Twelve-Factor App](https://12factor.net/) paradigm.
 
 App's entry point is in [`/src/index.js`](./src/index.js) where http(s) server is configured, routes are added and server
-starts listening on specified port.
+starts listening on the specified port.
 Routes/Actions are defined in [`/src/actions`](./src/actions), directory structure on disk represents directory structure
 of URLs.
 
@@ -88,31 +91,31 @@ Koa middleware is async function with `ctx` parameter and optional `next` parame
 next middlewares, if present). Value assigned to `ctx.body` is returned to client with `ctx.status` status code
 (if `ctx.body` is set defaults to 200, if `ctx.body` is not set defaults to 404). You can read route params from `ctx.params`
 and POST params from `ctx.request.body`.
-All thrown exceptions will be caught and transformed to JSON for client (see [`errorMiddleware`](./src/actions/errorMiddleware.js)).
+All thrown exceptions will be caught and transformed to JSON for the client (see [`errorMiddleware`](./src/actions/errorMiddleware.js)).
 
 ### Authentication
 
-Authentication layer is provided via [passport](http://www.passportjs.org/) package, using JWT authentication header (no cookie, no session).
+The authentication layer is provided via [passport](http://www.passportjs.org/) package, using JWT authentication header (no cookie, no session).
 OAuth examples provided through Google and Github, also logging in via local user/password is present.
-After successful authentication JS code is sent to client which stores JWT token to local storage and reloads page
+After successful authentication JS code is sent to the client which stores JWT token to local storage and reloads page
 (so client app can retrieve and use this token). (You should use cookies for storing JWT if all your client apps support it,
 as [cookies are usually more secure than local storage](https://dev.to/rdegges/please-stop-using-local-storage-1i04))
-Secured endpoints should use [`authMiddleware`](./src/actions/v1/authMiddleware.js) (Checks JWT token in header
+Secured endpoints should use [`authMiddleware`](./src/actions/v1/authMiddleware.js) (Checks JWT token in the header
 and tries to populate `ctx.state.user` with user object).
 
-Authorization layer not provided. (Usually [Role Based Access Control](https://en.wikipedia.org/wiki/Role-based_access_control) is sufficient)
+Authorization layer not provided. (Usually, [Role Based Access Control](https://en.wikipedia.org/wiki/Role-based_access_control) is sufficient)
 
 ### Testing
 
 Use mocha/jest/ava/... whatever you want.
 
-I can recommend using `supertest` (see testing users api [`/src/actions/v1/users/index.spec.js`](./src/actions/v1/users/index.spec.js))
+I can recommend using `supertest` (see testing users API [`/src/actions/v1/users/index.spec.js`](./src/actions/v1/users/index.spec.js))
 for testing your API calls and `puppeteer` for testing front-end code (see puppeteer example at [`/tests/puppeteer.spec.js`](./tests/puppeteer.spec.js)).
 
 ### Request data
 
-We are using [`cls-hooked`](https://www.npmjs.com/package/cls-hooked) to share context inside request. It is used for keeping request id
-accessible for logging even on places where you do not have direct access to request. If you are making request to external (micro)services,
+We are using [`cls-hooked`](https://www.npmjs.com/package/cls-hooked) to share context inside a request. It is used for keeping a request id
+accessible for logging even on places where you do not have direct access to the request. If you are requesting external (micro)services,
 you should keep this request id for better logging. e.g.
 
 ```js
@@ -123,7 +126,7 @@ axios.get("http://example.com", {
 });
 ```
 
-If really necessary you can also use this storage for your own data. e.g.
+If really necessary you can also use this storage for your data. e.g.
 
 ```js
 const { getNamespace } = require("cls-hooked");

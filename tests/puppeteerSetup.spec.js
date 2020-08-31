@@ -7,7 +7,7 @@ let server;
 
 // start api server before tests
 before(async function before() {
-  this.timeout(10000);
+  this.timeout(15000);
 
   server = spawn("node", ["./src"], {
     detached: true,

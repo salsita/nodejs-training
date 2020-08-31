@@ -18,6 +18,7 @@ before(async function before() {
   let loaded = false;
   while (!loaded) {
     /* eslint-disable no-await-in-loop */
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     let page;
     try {
       page = await Page.build();

@@ -9,6 +9,7 @@ const web = createWeb({
   log,
   ssl,
   allowUnsecure,
+  helmet: { contentSecurityPolicy: false },
 });
 
 module.exports = { app, ...web };

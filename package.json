@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@hapi/joi": "17.1.1",
-    "@koa/router": "9.4.0",
+    "@koa/router": "10.0.0",
     "@salsita/errors": "1.0.2",
     "@salsita/koa-error-middleware": "1.1.2",
     "@salsita/koa-joi-middleware": "1.0.3",

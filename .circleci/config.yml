@@ -60,7 +60,7 @@ jobs:
           - ALLOW_UNSECURE=1
           - DOMAIN=localhost:3001
           - PORT=3001
-      - image: postgres:10.14-alpine
+      - image: postgres:10.15-alpine
         environment:
           - POSTGRES_USER=ubuntu
           - POSTGRES_PASSWORD=ubuntu

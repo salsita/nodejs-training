@@ -71,9 +71,9 @@
     "passport-google-oauth": "2.0.0",
     "passport-jwt": "4.0.0",
     "passport-local": "1.0.0",
-    "pg": "8.4.2",
+    "pg": "8.5.1",
     "pretty-error": "2.1.2",
-    "snyk": "1.424.4",
+    "snyk": "1.427.0",
     "squel": "5.13.0",
     "winston": "3.3.3"
   },

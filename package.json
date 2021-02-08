@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "apidoc": "0.26.0",
-    "chai": "4.2.0",
+    "chai": "4.3.0",
     "cross-env": "7.0.3",
     "eslint": "7.19.0",
     "eslint-config-airbnb-base": "14.2.1",
@@ -41,7 +41,7 @@
     "husky": "4.3.8",
     "koa-send": "5.0.1",
     "koa-static": "5.0.0",
-    "lint-staged": "10.5.3",
+    "lint-staged": "10.5.4",
     "mocha": "8.2.1",
     "nodemon": "2.0.7",
     "prettier": "2.2.1",
@@ -73,7 +73,7 @@
     "passport-local": "1.0.0",
     "pg": "8.5.1",
     "pretty-error": "2.1.2",
-    "snyk": "1.440.1",
+    "snyk": "1.446.0",
     "squel": "5.13.0",
     "winston": "3.3.3"
   },

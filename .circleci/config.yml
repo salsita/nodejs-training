@@ -1,7 +1,7 @@
 version: 2
 
 node-image: &node-image
-  image: circleci/node:12.20.1
+  image: circleci/node:12.20.2
 
 set-npm-global: &set-npm-global
   run:
@@ -60,7 +60,7 @@ jobs:
           - ALLOW_UNSECURE=1
           - DOMAIN=localhost:3001
           - PORT=3001
-      - image: postgres:10.15-alpine
+      - image: postgres:10.16-alpine
         environment:
           - POSTGRES_USER=ubuntu
           - POSTGRES_PASSWORD=ubuntu

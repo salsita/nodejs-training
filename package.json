@@ -29,7 +29,7 @@
     }
   },
   "devDependencies": {
-    "apidoc": "0.26.0",
+    "apidoc": "0.27.1",
     "chai": "4.3.4",
     "cross-env": "7.0.3",
     "eslint": "7.22.0",
@@ -73,7 +73,7 @@
     "passport-local": "1.0.0",
     "pg": "8.5.1",
     "pretty-error": "2.1.2",
-    "snyk": "1.486.0",
+    "snyk": "1.503.0",
     "squel": "5.13.0",
     "winston": "3.3.3"
   },

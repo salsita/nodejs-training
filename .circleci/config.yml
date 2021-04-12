@@ -1,7 +1,7 @@
 version: 2
 
 node-image: &node-image
-  image: circleci/node:12.22.0
+  image: circleci/node:12.22.1
 
 set-npm-global: &set-npm-global
   run:

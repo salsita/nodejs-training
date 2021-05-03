@@ -73,7 +73,7 @@
     "passport-local": "1.0.0",
     "pg": "8.6.0",
     "pretty-error": "2.1.2",
-    "snyk": "1.564.0",
+    "snyk": "1.575.0",
     "squel": "5.13.0",
     "winston": "3.3.3"
   },

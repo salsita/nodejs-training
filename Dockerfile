@@ -1,4 +1,4 @@
-FROM node:10.24-alpine
+FROM node:21.3-alpine
 
 LABEL maintainer="jando@salsitasoft.com"
 

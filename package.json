@@ -65,7 +65,7 @@
     "is-wsl": "2.2.0",
     "jsonwebtoken": "8.5.1",
     "koa-passport": "4.1.4",
-    "lodash": "4.17.21",
+    "lodash": "4.18.1",
     "node-pg-migrate": "5.9.0",
     "passport-github": "1.1.0",
     "passport-google-oauth": "2.0.0",

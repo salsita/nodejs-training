@@ -29,7 +29,7 @@
     }
   },
   "devDependencies": {
-    "apidoc": "0.27.1",
+    "apidoc": "1.2.0",
     "chai": "4.3.4",
     "cross-env": "7.0.3",
     "eslint": "7.25.0",
